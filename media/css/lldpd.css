@@ -1,0 +1,926 @@
+/* -*- css -*- */
+/* -*- css -*- */
+/*! normalize.css 2012-03-06T10:21 UTC - http://github.com/necolas/normalize.css */
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/*
+ * Corrects block display not defined in IE6/7/8/9 & FF3
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section,
+summary {
+  display: block;
+}
+/*
+ * Corrects inline-block display not defined in IE6/7/8/9 & FF3
+ */
+audio,
+canvas,
+video {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+/*
+ * Prevents modern browsers from displaying 'audio' without controls
+ * Remove excess height in iOS5 devices
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+/*
+ * Addresses styling for 'hidden' attribute not present in IE7/8/9, FF3, S4
+ * Known issue: no IE6 support
+ */
+[hidden] {
+  display: none;
+}
+/* =============================================================================
+   Base
+   ========================================================================== */
+/*
+ * 1. Corrects text resizing oddly in IE6/7 when body font-size is set using em units
+ *    http://clagnut.com/blog/348/#c790
+ * 2. Prevents iOS text size adjust after orientation change, without disabling user zoom
+ *    www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
+ */
+html {
+  font-size: 100%;
+  /* 1 */
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+
+}
+/*
+ * Addresses font-family inconsistency between 'textarea' and other form elements.
+ */
+html,
+button,
+input,
+select,
+textarea {
+  font-family: 'Libre Baskerville', 'Georgia', sans-serif, 'Lucida Grande', 'Lucida Sans Unicode', 'Arial Unicode MS';
+}
+/*
+ * Addresses margins handled incorrectly in IE6/7
+ */
+body {
+  margin: 0;
+}
+/* =============================================================================
+   Links
+   ========================================================================== */
+/*
+ * Addresses outline displayed oddly in Chrome
+ */
+a:focus {
+  outline: thin dotted;
+}
+/*
+ * Improves readability when focused and also mouse hovered in all browsers
+ * people.opera.com/patrickl/experiments/keyboard/test
+ */
+a:hover,
+a:active {
+  outline: 0;
+}
+/* =============================================================================
+   Typography
+   ========================================================================== */
+small {
+  font-size: 75%;
+}
+/*
+ * Prevents sub and sup affecting line-height in all browsers
+ * gist.github.com/413930
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+/* =============================================================================
+   Lists
+   ========================================================================== */
+/*
+ * Addresses margins set differently in IE6/7
+ */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+dd {
+  margin: 0 0 0 40px;
+}
+/*
+ * Addresses paddings set differently in IE6/7
+ */
+menu,
+ol,
+ul {
+  padding: 0 0 0 40px;
+}
+/*
+ * Corrects list images handled incorrectly in IE7
+ */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+/* =============================================================================
+   Embedded content
+   ========================================================================== */
+/*
+ * 1. Removes border when inside 'a' element in IE6/7/8/9, FF3
+ * 2. Improves image quality when scaled in IE7
+ *    code.flickr.com/blog/2008/11/12/on-ui-quality-the-little-things-client-side-image-resizing/
+ */
+img {
+  border: 0;
+  /* 1 */
+
+  -ms-interpolation-mode: bicubic;
+  /* 2 */
+
+}
+/*
+ * Corrects overflow displayed oddly in IE9
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* =============================================================================
+   Figures
+   ========================================================================== */
+/*
+ * Addresses margin not present in IE6/7/8/9, S5, O11
+ */
+figure {
+  margin: 0;
+}
+/* =============================================================================
+   Forms
+   ========================================================================== */
+/*
+ * Corrects margin displayed oddly in IE6/7
+ */
+form {
+  margin: 0;
+}
+/*
+ * Define consistent border, margin, and padding
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+/*
+ * 1. Corrects color not being inherited in IE6/7/8/9
+ * 2. Corrects text not wrapping in FF3
+ * 3. Corrects alignment displayed oddly in IE6/7
+ */
+legend {
+  border: 0;
+  /* 1 */
+
+  padding: 0;
+  white-space: normal;
+  /* 2 */
+
+  *margin-left: -7px;
+  /* 3 */
+
+}
+/*
+ * 1. Corrects font size not being inherited in all browsers
+ * 2. Addresses margins set differently in IE6/7, FF3+, S5, Chrome
+ * 3. Improves appearance and consistency in all browsers
+ */
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* 1 */
+
+  margin: 0;
+  /* 2 */
+
+  vertical-align: baseline;
+  *vertical-align: middle;
+  /* 3 */
+
+}
+/*
+ * Addresses FF3/4 setting line-height on 'input' using !important in the UA stylesheet
+ */
+button,
+input {
+  line-height: normal;
+  /* 1 */
+
+}
+/*
+ * 1. Improves usability and consistency of cursor style between image-type 'input' and others
+ * 2. Corrects inability to style clickable 'input' types in iOS
+ * 3. Removes inner spacing in IE7 without affecting normal text inputs
+ *    Known issue: inner spacing remains in IE6
+ */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  /* 1 */
+
+  -webkit-appearance: button;
+  /* 2 */
+
+  *overflow: visible;
+  /* 3 */
+
+}
+/*
+ * Re-set default cursor for disabled elements
+ */
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+/*
+ * 1. Addresses box sizing set to content-box in IE8/9
+ * 2. Removes excess padding in IE8/9
+ * 3. Removes excess padding in IE7
+      Known issue: excess padding remains in IE6
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+
+  padding: 0;
+  /* 2 */
+
+  *height: 13px;
+  *width: 13px;
+  /* 3 */
+
+}
+/*
+ * 1. Addresses appearance set to searchfield in S5, Chrome
+ * 2. Addresses box-sizing set to border-box in S5, Chrome (include -moz to future-proof)
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+
+  box-sizing: content-box;
+}
+/*
+ * Removes inner padding and search cancel button in S5, Chrome on OS X
+ */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+/*
+ * Removes inner padding and border in FF3+
+ * www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/*
+ * 1. Removes default vertical scrollbar in IE6/7/8/9
+ * 2. Improves readability and alignment in all browsers
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+
+  vertical-align: top;
+  /* 2 */
+
+}
+/* =============================================================================
+   Tables
+   ========================================================================== */
+/*
+ * Remove most spacing between table cells
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* -*- css -*- */
+html {
+  background: white;
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  min-height: 100%;
+}
+p {
+  margin: 1.625em 0 0 0;
+  word-spacing: 0.25em;
+}
+a {
+  text-decoration: none;
+  color: #b80f28;
+}
+a:hover {
+  color: #a00d23;
+}
+.github-forkme {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+@media only screen and (max-width: 50em) {
+  .github-forkme {
+    display: none;
+  }
+}
+/* -*- css -*- */
+body {
+  font: normal 100% 'Libre Baskerville', 'Georgia', sans-serif, 'Lucida Grande', 'Lucida Sans Unicode', 'Arial Unicode MS';
+}
+article {
+  margin: 0 auto;
+  width: 50em;
+}
+article > * {
+  margin: 0 2em;
+}
+@media only screen and (max-width: 50em) {
+  article > * {
+    margin: 0 1em;
+  }
+  article {
+    width: auto;
+    margin: 0;
+  }
+}
+article {
+  padding-bottom: 2em;
+  line-height: 1.625;
+  color: #333;
+  zoom: 1;
+}
+article:after {
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+  content: ".";
+}
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  color: #b80f28;
+  font-family: 'Libre Baskerville', 'Georgia', sans-serif, 'Lucida Grande', 'Lucida Sans Unicode', 'Arial Unicode MS';
+  font-weight: bold;
+  page-break-after: avoid;
+  page-break-inside: avoid;
+  text-shadow: white 0 1px 2px, white 1px 1px 1px;
+}
+article h1 {
+  font-size: 2.125em;
+  line-height: 1.5294117647058822;
+  margin: 1.5294117647058822em 0 0.7647058823529411em;
+}
+header article h1 {
+  font-size: 2.625em;
+  line-height: 1.2380952380952381;
+  margin: 1.2380952380952381em 0 0.6190476190476191em;
+}
+article h2 {
+  font-size: 1.625em;
+  line-height: 1;
+  margin: 2em 0 1em;
+}
+article h3 {
+  font-size: 1.312em;
+  line-height: 1.2385670731707317;
+  margin: 2.4771341463414633em 0 1.2385670731707317em;
+}
+article code {
+  border-radius: 3px;
+  border: 1px solid #f9b4be;
+  padding: 0 2px;
+}
+article sup {
+  font-size: 0.7em;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.7em;
+}
+article abbr {
+  cursor: help;
+  border-bottom: 1px dashed #f9b4be;
+}
+article ul {
+  margin: 15px 0;
+  padding: 0;
+  list-style: none;
+}
+article ul li:before {
+  content: "\00BB \0020";
+  color: #888;
+  position: absolute;
+  margin-left: -19px;
+}
+.toc {
+  margin: 1.625em 0 1.625em 3em;
+  padding: 0 2em;
+  max-width: 25em;
+  border-left: 1px dashed #f36d81;
+}
+.toc ul {
+  margin: 0 0.5em;
+  list-style-type: decimal;
+  font-size: 0.875em;
+  line-height: 1.8571428571428572;
+}
+.toc ul ul {
+  font-size: 1em;
+}
+.toc ul li {
+  background: none;
+  padding-left: 1em;
+}
+.toc ul li:before {
+  content: none;
+}
+/* -*- css -*- */
+pre,
+code,
+code .amp,
+pre .amp,
+.manpage {
+  font-family: 'Inconsolata', 'Droid Sans Mono', monospace, 'Lucida Grande', 'Lucida Sans Unicode', 'Arial Unicode MS';
+  font-style: normal;
+  line-height: 1.2;
+}
+.manpage {
+  white-space: pre;
+}
+.codehilite,
+.manpage {
+  border: 1px solid #E0E0E0;
+  margin: 0.4em auto 1.625em;
+  padding: 0.4em 2%;
+  width: 94%;
+  overflow-x: auto;
+  /* Small scrollbar */
+
+}
+.codehilite pre,
+.manpage pre {
+  margin: 0;
+}
+.codehilite::-webkit-scrollbar,
+.manpage::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.codehilite::-webkit-scrollbar-track-piece,
+.manpage::-webkit-scrollbar-track-piece {
+  -webkit-border-radius: 3px;
+}
+.codehilite::-webkit-scrollbar-thumb:vertical,
+.manpage::-webkit-scrollbar-thumb:vertical,
+.codehilite::-webkit-scrollbar-thumb:horizontal,
+.manpage::-webkit-scrollbar-thumb:horizontal {
+  height: 5px;
+  background-color: #666;
+  -webkit-border-radius: 3px;
+}
+.codehilite {
+  /* Output of HtmlFormatter(linenos=True,style='colorful').get_style_defs() */
+
+  /* Comment */
+
+  /* Keyword */
+
+  /* Operator */
+
+  /* Comment.Multiline */
+
+  /* Comment.Preproc */
+
+  /* Comment.Single */
+
+  /* Comment.Special */
+
+  /* Generic.Deleted */
+
+  /* Generic.Emph */
+
+  /* Generic.Error */
+
+  /* Generic.Heading */
+
+  /* Generic.Inserted */
+
+  /* Generic.Output */
+
+  /* Generic.Prompt */
+
+  /* Generic.Strong */
+
+  /* Generic.Subheading */
+
+  /* Generic.Traceback */
+
+  /* Keyword.Constant */
+
+  /* Keyword.Declaration */
+
+  /* Keyword.Namespace */
+
+  /* Keyword.Pseudo */
+
+  /* Keyword.Reserved */
+
+  /* Keyword.Type */
+
+  /* Literal.Number */
+
+  /* Literal.String */
+
+  /* Name.Attribute */
+
+  /* Name.Builtin */
+
+  /* Name.Class */
+
+  /* Name.Constant */
+
+  /* Name.Decorator */
+
+  /* Name.Entity */
+
+  /* Name.Exception */
+
+  /* Name.Function */
+
+  /* Name.Label */
+
+  /* Name.Namespace */
+
+  /* Name.Tag */
+
+  /* Name.Variable */
+
+  /* Operator.Word */
+
+  /* Text.Whitespace */
+
+  /* Literal.Number.Float */
+
+  /* Literal.Number.Hex */
+
+  /* Literal.Number.Integer */
+
+  /* Literal.Number.Oct */
+
+  /* Literal.String.Backtick */
+
+  /* Literal.String.Char */
+
+  /* Literal.String.Doc */
+
+  /* Literal.String.Double */
+
+  /* Literal.String.Escape */
+
+  /* Literal.String.Heredoc */
+
+  /* Literal.String.Interpol */
+
+  /* Literal.String.Other */
+
+  /* Literal.String.Regex */
+
+  /* Literal.String.Single */
+
+  /* Literal.String.Symbol */
+
+  /* Name.Builtin.Pseudo */
+
+  /* Name.Variable.Class */
+
+  /* Name.Variable.Global */
+
+  /* Name.Variable.Instance */
+
+  /* Literal.Number.Integer.Long */
+
+}
+.codehilite .hll {
+  background-color: #ffffcc;
+}
+.codehilite .c {
+  color: #808080;
+}
+.codehilite .k {
+  color: #008000;
+  font-weight: bold;
+}
+.codehilite .o {
+  color: #303030;
+}
+.codehilite .cm {
+  color: #808080;
+}
+.codehilite .cp {
+  color: #507090;
+}
+.codehilite .c1 {
+  color: #808080;
+}
+.codehilite .cs {
+  color: #cc0000;
+  font-weight: bold;
+}
+.codehilite .gd {
+  color: #a00000;
+}
+.codehilite .ge {
+  font-style: italic;
+}
+.codehilite .gr {
+  color: #ff0000;
+}
+.codehilite .gh {
+  color: #000080;
+  font-weight: bold;
+}
+.codehilite .gi {
+  color: #00a000;
+}
+.codehilite .go {
+  color: #808080;
+}
+.codehilite .gp {
+  color: #c65d09;
+  font-weight: bold;
+}
+.codehilite .gs {
+  font-weight: bold;
+}
+.codehilite .gu {
+  color: #800080;
+  font-weight: bold;
+}
+.codehilite .gt {
+  color: #0040d0;
+}
+.codehilite .kc {
+  color: #008000;
+  font-weight: bold;
+}
+.codehilite .kd {
+  color: #008000;
+  font-weight: bold;
+}
+.codehilite .kn {
+  color: #008000;
+  font-weight: bold;
+}
+.codehilite .kp {
+  color: #003080;
+  font-weight: bold;
+}
+.codehilite .kr {
+  color: #008000;
+  font-weight: bold;
+}
+.codehilite .kt {
+  color: #303090;
+  font-weight: bold;
+}
+.codehilite .m {
+  color: #6000E0;
+  font-weight: bold;
+}
+.codehilite .s {
+  background-color: #fff0f0;
+}
+.codehilite .na {
+  color: #0000c0;
+}
+.codehilite .nb {
+  color: #007020;
+}
+.codehilite .nc {
+  color: #B00060;
+  font-weight: bold;
+}
+.codehilite .no {
+  color: #003060;
+  font-weight: bold;
+}
+.codehilite .nd {
+  color: #505050;
+  font-weight: bold;
+}
+.codehilite .ni {
+  color: #800000;
+  font-weight: bold;
+}
+.codehilite .ne {
+  color: #F00000;
+  font-weight: bold;
+}
+.codehilite .nf {
+  color: #0060B0;
+  font-weight: bold;
+}
+.codehilite .nl {
+  color: #907000;
+  font-weight: bold;
+}
+.codehilite .nn {
+  color: #0e84b5;
+  font-weight: bold;
+}
+.codehilite .nt {
+  color: #007000;
+}
+.codehilite .nv {
+  color: #906030;
+}
+.codehilite .ow {
+  color: #000000;
+  font-weight: bold;
+}
+.codehilite .w {
+  color: #bbbbbb;
+}
+.codehilite .mf {
+  color: #6000E0;
+  font-weight: bold;
+}
+.codehilite .mh {
+  color: #005080;
+  font-weight: bold;
+}
+.codehilite .mi {
+  color: #0000D0;
+  font-weight: bold;
+}
+.codehilite .mo {
+  color: #4000E0;
+  font-weight: bold;
+}
+.codehilite .sb {
+  background-color: #fff0f0;
+}
+.codehilite .sc {
+  color: #0040d0;
+}
+.codehilite .sd {
+  color: #d04020;
+}
+.codehilite .s2 {
+  background-color: #fff0f0;
+}
+.codehilite .se {
+  color: #606060;
+  font-weight: bold;
+  background-color: #fff0f0;
+}
+.codehilite .sh {
+  background-color: #fff0f0;
+}
+.codehilite .si {
+  background-color: #e0e0e0;
+}
+.codehilite .sx {
+  color: #D02000;
+  background-color: #fff0f0;
+}
+.codehilite .sr {
+  color: #000000;
+  background-color: #fff0ff;
+}
+.codehilite .s1 {
+  background-color: #fff0f0;
+}
+.codehilite .ss {
+  color: #a06000;
+}
+.codehilite .bp {
+  color: #007020;
+}
+.codehilite .vc {
+  color: #306090;
+}
+.codehilite .vg {
+  color: #d07000;
+  font-weight: bold;
+}
+.codehilite .vi {
+  color: #3030b0;
+}
+.codehilite .il {
+  color: #0000D0;
+  font-weight: bold;
+}
+/* -*- css -*- */
+article {
+  /* Images */
+
+}
+article img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  background-color: white;
+  padding: 1em;
+  vertical-align: bottom;
+  margin: 1em auto;
+  display: block;
+  interpolation-mode: bicubic;
+}
+/* -*- css -*- */
+/* Short tagline */
+nav .tagline {
+  font-style: italic;
+  color: #333;
+  max-width: 37em;
+  font-size: 1.312em;
+  line-height: 1.2385670731707317;
+  margin: 1.2385670731707317em auto 1.2385670731707317em;
+  text-align: center;
+}
+nav .tagline em {
+  font-style: normal;
+}
+nav ul {
+  list-style-type: none;
+  text-align: center;
+  padding: 0;
+}
+nav ul li {
+  display: inline;
+}
+nav ul a {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+nav ul li:not(:first-child):before {
+  content: " // ";
+  padding: 0 1em;
+}
+nav {
+  padding: 2px 0 2px;
+  box-shadow: 0px 5px 10px #333;
+  background: url("../images/bright_squares.png") repeat;
+}
+/* -*- css -*- */
+/* Beautiful ampersand */
+.amp {
+  font-family: 'Libre Baskerville', Baskerville, 'Goudy Old Style', 'Goudy Bookletter 1911', Palatino, 'Palatino Linotype', 'URW Palladio L', 'Cochin', 'Book Antiqua', 'Apple Chancery', 'Constantia', 'Libre Baskerville', 'Georgia', sans-serif, 'Lucida Grande', 'Lucida Sans Unicode', 'Arial Unicode MS';
+  font-style: italic;
+  font-weight: normal;
+  line-height: 75%;
+}

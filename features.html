@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+    <title>lldpd » implementation of IEEE 802.1ab | Features</title>
+    <meta name="keywords" content="lldpd, 802.1ab, network, discovery, cdp, edp, snmp">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="canonical" href="https://vincentbernat.github.com/lldpd//features.html">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata|Libre+Baskerville:400,400italic,700" type="text/css">
+  <link rel="stylesheet" href="/media/css/lldpd.5eea0d2a.css" type="text/css">
+  <script src="/media/js/mp.90e9fc11.js"></script>
+</head>
+<body>
+
+  <a class="github-forkme" href="https://github.com/vincentbernat/lldpd">
+    <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
+         alt="Fork me on GitHub">
+  </a>
+
+  <nav>
+
+  <p class="tagline">
+    <em>lldpd</em> is a 802.1ab implementation (LLDP) to
+    help you locate neighbors of all your equipments.
+  </p>
+
+  <ul>
+    <li><a href="index.html">Overview</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="installation.html">Installation</a></li>
+    <li><a href="usage.html">Usage</a></li>
+  </ul>
+</nav>
+
+  <article>
+    <div role="main">
+            <header>
+        <h1>Features</h1>
+      </header>
+      
+      <p><code>lldpd</code> supports <strong>several discovery protocols</strong> and is smart enough
+to select the right protocol on each&nbsp;interface:</p>
+<ul>
+<li><abbr title="Link Layer Discovery Protocol"><span class="caps">LLDP</span></abbr>, of&nbsp;course</li>
+<li><abbr title="Cisco Discovery Protocol"><span class="caps">CDP</span></abbr>&nbsp;(Cisco)</li>
+<li><abbr title="Extreme Discovery Protocol"><span class="caps">EDP</span></abbr>&nbsp;(Extreme)</li>
+<li><abbr title="SynOptics Network Management Protocol"><span class="caps">SONMP</span></abbr>&nbsp;(Nortel)</li>
+<li><abbr title="Foundry Discovery Protocol"><span class="caps">FDP</span></abbr>&nbsp;(Foundry)</li>
+</ul>
+<p>It is able to advertise the following&nbsp;<span class="caps">TLV</span>:</p>
+<ul>
+<li>System name and&nbsp;description</li>
+<li>Port name and&nbsp;description</li>
+<li><span class="caps">VLAN</span> <span class="caps">ID</span> and&nbsp;names</li>
+<li>IPv4/IPv6 management&nbsp;address</li>
+<li><span class="caps">MAC</span>/<span class="caps">PHY</span>&nbsp;information</li>
+<li><span class="caps">MDI</span> power (802.3af and&nbsp;802.3at)</li>
+<li>Link&nbsp;aggregation</li>
+<li>Network policies (<abbr title="Link Layer Discovery Protocol"><span class="caps">LLDP</span></abbr>-<abbr title="Media Endpoint Discovery"><span class="caps">MED</span></abbr>)</li>
+<li>Location (<abbr title="Link Layer Discovery Protocol"><span class="caps">LLDP</span></abbr>-<abbr title="Media Endpoint Discovery"><span class="caps">MED</span></abbr>)</li>
+<li>Inventory (<abbr title="Link Layer Discovery Protocol"><span class="caps">LLDP</span></abbr>-<abbr title="Media Endpoint Discovery"><span class="caps">MED</span></abbr>)</li>
+</ul>
+<p><code>lldpd</code> supports many&nbsp;<span class="caps">OS</span>:</p>
+<ul>
+<li><span class="caps">GNU</span>/Linux</li>
+<li>FreeBSD</li>
+<li>NetBSD</li>
+<li>OpenBSD</li>
+<li>Mac <span class="caps">OS</span> X (sponsored by <a href="http://xcloud.me">Xcloud</a>, Mac cloud server&nbsp;hosting)</li>
+</ul>
+<p>Moreover, it can handle correctly <span class="caps">VLAN</span>, link aggregates and bridges on
+all those&nbsp;platforms.</p>
+<p>Discovered neighbors can be queried through a convenient <strong>command
+line</strong>&nbsp;interface:</p>
+<div class="codehilite"><pre><span class="gp">#</span> show neighbors detail
+<span class="go">-------------------------------------------------------------------------------</span>
+<span class="go">Interface:    eth0, via: <span class="caps">LLDP</span>, <span class="caps">RID</span>: 1, Time: 0 day, 00:00:10</span>
+<span class="go">  Chassis:     </span>
+<span class="go">    ChassisID:    mac 00:18:f3:03:4e:06</span>
+<span class="go">    SysName:      dev-01.example.com</span>
+<span class="go">    SysDescr:     Debian <span class="caps">GNU</span>/Linux 7.0 (wheezy) Linux 3.7-trunk-amd64 #1 <span class="caps">SMP</span> Debian 3.7.1-1~experimental.1 x86_64</span>
+<span class="go">    MgmtIP:       192.168.20.127</span>
+<span class="go">    Capability:   Bridge, on</span>
+<span class="go">    Capability:   Router, on</span>
+<span class="go">    Capability:   Wlan, off</span>
+<span class="go">  Port:        </span>
+<span class="go">    PortID:       mac ea:b8:ab:aa:8c:da</span>
+<span class="go">    PortDescr:    eth1</span>
+<span class="go">    <span class="caps">PMD</span> autoneg:  supported: no, enabled: no</span>
+<span class="go">      <span class="caps">MAU</span> oper type: 10GigBaseR - R <span class="caps">PCS</span>/<span class="caps">PMA</span>, unknown <span class="caps">PMD</span>.</span>
+<span class="go">  <span class="caps">LLDP</span>-<span class="caps">MED</span>:    </span>
+<span class="go">    Device Type:  Media Endpoint (Class <span class="caps">II</span>)</span>
+<span class="go">    Capability:   Capabilities</span>
+<span class="go">    Capability:   Policy</span>
+<span class="go">    Capability:   Location</span>
+<span class="go">    Capability:   <span class="caps">MDI</span>/<span class="caps">PSE</span></span>
+<span class="go">    Capability:   <span class="caps">MDI</span>/<span class="caps">PD</span></span>
+<span class="go">    Capability:   Inventory</span>
+<span class="go">    Inventory:   </span>
+<span class="go">      Hardware Revision: System Version</span>
+<span class="go">      Software Revision: 3.7-trunk-amd64</span>
+<span class="go">      Firmware Revision: 2104   </span>
+<span class="go">      Serial Number: System Serial Number</span>
+<span class="go">      Manufacturer: System manufacturer</span>
+<span class="go">      Model:        System Product Name</span>
+<span class="go">      Asset <span class="caps">ID</span>:     Asset-1234567890</span>
+<span class="go">-------------------------------------------------------------------------------</span>
+</pre></div>
+
+
+<p>They can also be queried through <span class="caps">SNMP</span> with the built-in <span class="caps">SNMP</span>
+subagent. Or through a Unix socket with the provided&nbsp;library.</p>    </div>
+  </article>
+
+</body>
+</html>

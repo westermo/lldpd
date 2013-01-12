@@ -1,0 +1,204 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+    <title>lldpd » implementation of IEEE 802.1ab | Installation</title>
+    <meta name="keywords" content="lldpd, 802.1ab, network, discovery, cdp, edp, snmp">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="canonical" href="https://vincentbernat.github.com/lldpd//installation.html">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata|Libre+Baskerville:400,400italic,700" type="text/css">
+  <link rel="stylesheet" href="/media/css/lldpd.5eea0d2a.css" type="text/css">
+  <script src="/media/js/mp.90e9fc11.js"></script>
+</head>
+<body>
+
+  <a class="github-forkme" href="https://github.com/vincentbernat/lldpd">
+    <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
+         alt="Fork me on GitHub">
+  </a>
+
+  <nav>
+
+  <p class="tagline">
+    <em>lldpd</em> is a 802.1ab implementation (LLDP) to
+    help you locate neighbors of all your equipments.
+  </p>
+
+  <ul>
+    <li><a href="index.html">Overview</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="installation.html">Installation</a></li>
+    <li><a href="usage.html">Usage</a></li>
+  </ul>
+</nav>
+
+  <article>
+    <div role="main">
+            <header>
+        <h1>Installation</h1>
+      </header>
+      
+      <p><code>lldpd</code> supports several <span class="caps">OS</span>. You can install it from packages or from
+sources. Once installed, you may want to look
+<a href="/usage.html">how to use and configure it</a>.</p>
+<div class="toc">
+<ul>
+<li><a href="#gnulinux"><span class="caps">GNU</span>/Linux</a><ul>
+<li><a href="#debian-and-ubuntu">Debian and&nbsp;Ubuntu</a></li>
+<li><a href="#gentoo">Gentoo</a></li>
+<li><a href="#fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span>&nbsp;<span class="caps">SUSE</span></a></li>
+</ul>
+</li>
+<li><a href="#bsd"><span class="caps">BSD</span></a></li>
+<li><a href="#mac-os-x">Mac <span class="caps">OS</span>&nbsp;X</a></li>
+<li><a href="#install-from-source">Install from&nbsp;source</a></li>
+</ul>
+</div>
+<h1 id="gnulinux"><span class="caps">GNU</span>/Linux</h1>
+<h2 id="debian-and-ubuntu">Debian and&nbsp;Ubuntu</h2>
+<p><code>lldpd</code> is already available in Debian and Ubuntu. You can install it&nbsp;with:</p>
+<div class="codehilite"><pre><span class="gp">$</span> sudo apt-get install lldpd
+<span class="go">Reading package lists... Done</span>
+<span class="go">Building dependency tree       </span>
+<span class="go">Reading state information... Done</span>
+<span class="go">The following extra packages will be installed:</span>
+<span class="go">[...]</span>
+</pre></div>
+
+
+<p>It will be installed and configured to start at boot. You can change
+the options of <code>lldpd</code> in <code>/etc/default/lldpd</code>.</p>
+<p>If the package is not recent enough, you can use the
+<a href="http://backports.debian.org" title="Debian Backports">Debian backports</a> on Debian. Follow the instructions available on
+the&nbsp;website.</p>
+<p>If it is still not recent enough, you can grab the appropriate Debian
+package from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build Service</a>. Follow the instructions
+available on the&nbsp;website.</p>
+<p>The last option is to to <a href="#install-from-source">build <em>lldpd</em> from source</a>. You can still
+install and uninstall the package to get <code>_lldpd</code> user and group, as
+well as a working init&nbsp;script.</p>
+<h2 id="gentoo">Gentoo</h2>
+<p><code>lldpd</code> is available in portage. Just issue the command <code>emerge lldpd</code>
+to install it. You can also <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
+<h2 id="fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span>&nbsp;<span class="caps">SUSE</span></h2>
+<p>You can install the packages from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build Service</a>. Follow
+the instructions available on the website. It is also possible to
+<a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
+<h1 id="bsd"><span class="caps">BSD</span></h1>
+<p><code>lldpd</code> is currently not available in the port tree of any
+<span class="caps">BSD</span>. Therefore, you have to <a href="#install-from-source">build <em>lldpd</em> from source</a>. You can add
+<code>_lldpd</code> user with <code>vipw</code> and add <code>_lldpd</code> group by adding it manually
+in <code>/etc/group</code>. The user must not be able to login, have its home as
+<code>/var/empty</code> and a disabled shell (like <code>/bin/false</code>).</p>
+<p>You may want to configure <code>lldpd</code> with
+<code>--with-privsep-chroot=/var/empty</code> to avoid to create
+<code>/var/run/lldpd</code>.</p>
+<p>If <code>lldpcli</code> is not able to provide completion, you can use the <code>help</code>
+command instead or install the <span class="caps">GNU</span> Readline library on your&nbsp;system.</p>
+<h1 id="mac-os-x">Mac <span class="caps">OS</span>&nbsp;X</h1>
+<p>The easiest way is to use <a href="http://mxcl.github.com/homebrew/" title="Homebrew: the missing package manager for OS X">Homebrew</a>. Check the website if you don&#8217;t
+have it, it is easy to install. Once installed, type in a&nbsp;terminal:</p>
+<div class="codehilite"><pre><span class="gp">$</span> brew install https://raw.github.com/vincentbernat/lldpd/master/osx/lldpd.rb
+<span class="gp">#</span><span class="c">####################################################################### 100.0%</span>
+<span class="go">==&gt; Downloading http://media.luffy.cx/files/lldpd/lldpd-0.7.0.tar.gz</span>
+<span class="go">==&gt; ./configure --prefix=/usr/local/Cellar/lldpd/0.7.0 --with-xml --with-readline</span>
+<span class="go">[...]</span>
+</pre></div>
+
+
+<p>Pay attention at the instructions at the end of the build: they
+explain how to create <code>_lldpd</code> user and group and how to run <code>lldpd</code>
+when the system&nbsp;starts.</p>
+<p>If you don&#8217;t want to use <a href="http://mxcl.github.com/homebrew/" title="Homebrew: the missing package manager for OS X">Homebrew</a>, you will need to
+<a href="#install-from-source">build <em>lldpd</em> from source</a>. To create <code>_lldpd</code> user and <code>_group</code>, you
+need to use <code>dscl</code>. First, locate a free <span class="caps">UID</span> and&nbsp;<span class="caps">GID</span>:</p>
+<div class="codehilite"><pre><span class="gp">$</span> dscl . list /Users uid
+<span class="gp">$</span> dscl . list /Groups gid
+</pre></div>
+
+
+<p>Let&#8217;s say that 274 is not used. Let&#8217;s create the appropriate&nbsp;user:</p>
+<div class="codehilite"><pre><span class="gp">$</span> sudo dscl . -create /Groups/_lldpd
+<span class="gp">$</span> sudo dscl . -create /Groups/_lldpd PrimaryGroupID 274
+<span class="gp">$</span> sudo dscl . -create /Groups/_lldpd Password <span class="s2">&quot;*&quot;</span>
+<span class="gp">$</span> sudo dscl . -create /Groups/_lldpd RealName <span class="s2">&quot;lldpd privilege separation group&quot;</span>
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd UserShell /usr/bin/false
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd NFSHomeDirectory /var/empty
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd PrimaryGroupID 274
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd UniqueID 274
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd Password <span class="s2">&quot;*&quot;</span>
+<span class="gp">$</span> sudo dscl . -create /Users/_lldpd RealName <span class="s2">&quot;lldpd privilege separation user&quot;</span>
+</pre></div>
+
+
+<p>You still need to create <code>/var/run/lldpd</code> and to integrate <code>lldpd</code> in
+<code>launchd</code> yourself.</p>
+<h1 id="install-from-source">Install from&nbsp;source</h1>
+<p>This is the last resort method. Other methods are usually&nbsp;simpler.</p>
+<p>You first need to download the latest version
+(<a href="http://media.luffy.cx/files/lldpd/lldpd-0.7.0.tar.gz" title="lldpd 0.7.0 version">0.7.0</a>). You need a working build&nbsp;environment.</p>
+<div class="codehilite"><pre><span class="gp">$</span> tar zxvf ~/download/lldpd-0.7.0.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>lldpd-0.7.0
+<span class="gp">$</span> mkdir build
+<span class="gp">$</span> <span class="nb">cd </span>build
+<span class="gp">$</span> ../configure
+<span class="go">checking for a <span class="caps">BSD</span>-compatible install... /usr/bin/install -c</span>
+<span class="go">checking whether build environment is sane... yes</span>
+<span class="go">checking for a thread-safe mkdir -p... /bin/mkdir -p</span>
+<span class="go">checking for gawk... gawk</span>
+<span class="go">[...]</span>
+<span class="go">------------------ Summary ------------------</span>
+<span class="go"> lldpd version </span>
+<span class="go">  Prefix.........: /usr/local</span>
+<span class="go">  C Compiler.....: gcc -g -O2 -fdiagnostics-show-option -std=gnu99 -pipe -Wall -W -Wextra -Wformat -Wformat-security -Wcast-align -Winline -fstack-protector -D_FORTIFY_SOURCE=2 -Wdeclaration-after-statement -Wno-unused-parameter -Wno-sign-compare </span>
+<span class="go">  Linker.........: /usr/bin/ld -m elf_x86_64  -Wl,-z,relro -Wl,-z,now </span>
+<span class="go">  Libevent.......: system</span>
+<span class="go"> Optional features:</span>
+<span class="go">  <span class="caps">SNMP</span> support...: no</span>
+<span class="go">  <span class="caps">CDP</span>............: yes</span>
+<span class="go">  <span class="caps">FDP</span>............: yes</span>
+<span class="go">  <span class="caps">EDP</span>............: yes</span>
+<span class="go">  <span class="caps">SONMP</span>..........: yes</span>
+<span class="go">  <span class="caps">LLDPMED</span>........: yes</span>
+<span class="go">  <span class="caps">DOT1</span>...........: yes</span>
+<span class="go">  <span class="caps">DOT3</span>...........: yes</span>
+<span class="go">  <span class="caps">XML</span> output.....: no</span>
+<span class="go">---------------------------------------------</span>
+
+<span class="go">Check the above options and compile with:</span>
+<span class="go"> make</span>
+</pre></div>
+
+
+<p>If this steps fail, feel free to [file a bug report][]. The content
+of <code>config.log</code> should be helpful. Otherwise, check if everything is
+as you except and&nbsp;continue.</p>
+<div class="codehilite"><pre><span class="gp">$</span> make
+<span class="go">  <span class="caps">CC</span>     strlcpy.lo</span>
+<span class="go">  <span class="caps">CCLD</span>   libcompat.la</span>
+<span class="go">  <span class="caps">CC</span>     log.lo</span>
+<span class="go">[...]</span>
+<span class="go">make[1]: Leaving directory `/home/bernat/src/lldpd-0.7.0&#39;</span>
+</pre></div>
+
+
+<p>If this steps fail, feel free to [file a bug report][] too with the
+output and some details on your platform. The <code>config.log</code> is also
+useful in this&nbsp;case.</p>
+<p>You can finish the installation with <code>make install</code>. Then, you still
+have to complete the following steps by yourself. They are system&nbsp;specifics:</p>
+<ul>
+<li>Create a <code>_lldpd</code> user and a <code>_lldpd</code> group. This is needed for
+   privilege seperation (increased&nbsp;security).</li>
+<li>Create the chroot (<code>/var/run/lldpd</code> by default). It is just an
+   empty&nbsp;directory.</li>
+<li>Ensure that <code>lldpd</code> is started at&nbsp;boot.</li>
+</ul>
+<p><code>../configure</code> accepts several options. You can get them with
+<code>../configure --help</code>. The most interesting ones are <code>--with-snmp</code> and
+<code>--with-xml</code>.</p>    </div>
+  </article>
+
+</body>
+</html>
