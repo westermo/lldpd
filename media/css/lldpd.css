@@ -371,8 +371,8 @@ a:hover {
 }
 .latest-version {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 3em;
+  left: 2em;
 }
 .latest-version div {
   background-color: #b80f28;
@@ -895,15 +895,16 @@ article {
 
 }
 article img {
-  max-width: 100%;
+  max-width: 96%;
   width: auto;
   height: auto;
   background-color: white;
-  padding: 1em;
+  padding: 2%;
   vertical-align: bottom;
   margin: 1em auto;
   display: block;
   interpolation-mode: bicubic;
+  box-shadow: 0 0 10px #333;
 }
 /* -*- css -*- */
 /* Short tagline */
