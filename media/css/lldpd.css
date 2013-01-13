@@ -442,17 +442,17 @@ article h6 {
   font-weight: bold;
   page-break-after: avoid;
   page-break-inside: avoid;
-  text-shadow: white 0 1px 2px, white 1px 1px 1px;
+  text-shadow: #aaa 0 1px 2px, #aaa 1px 1px 1px;
+}
+article header h1 {
+  font-size: 2.625em;
+  line-height: 1.2380952380952381;
+  margin: 1.2380952380952381em 0 0.6190476190476191em;
 }
 article h1 {
   font-size: 2.125em;
   line-height: 1.5294117647058822;
   margin: 1.5294117647058822em 0 0.7647058823529411em;
-}
-header article h1 {
-  font-size: 2.625em;
-  line-height: 1.2380952380952381;
-  margin: 1.2380952380952381em 0 0.6190476190476191em;
 }
 article h2 {
   font-size: 1.625em;
