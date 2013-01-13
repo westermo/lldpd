@@ -523,40 +523,57 @@ pre .amp,
   line-height: 1.2;
 }
 .manpage {
+  text-align: center;
+  width: 100%;
+}
+.manpage div {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
   white-space: pre;
+  text-align: left;
+}
+.manpage div b {
+  font-weight: normal;
+  color: #b80f28;
+}
+.manpage div u {
+  text-decoration: none;
+  color: #507090;
 }
 .codehilite,
-.manpage {
+.manpage div {
   border: 1px solid #E0E0E0;
   margin: 0.4em auto 1.625em;
   padding: 0.4em 2%;
-  width: 94%;
+  max-width: 94%;
   overflow-x: auto;
   /* Small scrollbar */
 
 }
 .codehilite pre,
-.manpage pre {
+.manpage div pre {
   margin: 0;
 }
 .codehilite::-webkit-scrollbar,
-.manpage::-webkit-scrollbar {
+.manpage div::-webkit-scrollbar {
   width: 3px;
   height: 3px;
 }
 .codehilite::-webkit-scrollbar-track-piece,
-.manpage::-webkit-scrollbar-track-piece {
+.manpage div::-webkit-scrollbar-track-piece {
   -webkit-border-radius: 3px;
 }
 .codehilite::-webkit-scrollbar-thumb:vertical,
-.manpage::-webkit-scrollbar-thumb:vertical,
+.manpage div::-webkit-scrollbar-thumb:vertical,
 .codehilite::-webkit-scrollbar-thumb:horizontal,
-.manpage::-webkit-scrollbar-thumb:horizontal {
+.manpage div::-webkit-scrollbar-thumb:horizontal {
   height: 5px;
   background-color: #666;
   -webkit-border-radius: 3px;
 }
 .codehilite {
+  width: 94%;
   /* Output of HtmlFormatter(linenos=True,style='colorful').get_style_defs() */
 
   /* Comment */
