@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.1.tar.gz">
-  <div title="Download latest version of lldpd">0.7.1</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.2.tar.gz">
+  <div title="Download latest version of lldpd">0.7.2</div>
 </a>
 
   <nav>
@@ -51,14 +51,14 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.1):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.2):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
 <b><span class="caps">SYNOPSIS</span></b>
      <b>lldpd</b> [<b>-dxcseiklrv</b>] [<b>-D</b> <u>debug</u>] [<b>-S</b> <u>description</u>] [<b>-P</b> <u>platform</u>]
-           [<b>-X</b> <u>socket</u>] [<b>-m</b> <u>management</u>] [<b>-I</b> <u>interfaces</u>] [<b>-C</b> <u>interfaces</u>]
-           [<b>-M</b> <u>class</u>] [<b>-H</b> <u>hide</u>]
+           [<b>-X</b> <u>socket</u>] [<b>-m</b> <u>management</u>] [<b>-u</b> <u>file</u>] [<b>-I</b> <u>interfaces</u>]
+           [<b>-C</b> <u>interfaces</u>] [<b>-M</b> <u>class</u>] [<b>-H</b> <u>hide</u>] [<b>-L</b> <u>lldpcli</u>]
 
 <b><span class="caps">DESCRIPTION</span></b>
      <b>lldpd</b> is a daemon able to receive and send <u><span class="caps">LLDP</span></u> frames. The Link Layer
@@ -149,7 +149,9 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
      <b>-c</b>      Enable the support of <span class="caps">CDP</span> protocol to deal with Cisco routers
              that do not speak <span class="caps">LLDP</span>. If repeated, CDPv1 packets will be sent
-             even when there is no <span class="caps">CDP</span> peer detected.
+             even when there is no <span class="caps">CDP</span> peer detected. If repeated once
+             again, CDPv2 packets will be sent even when there is no <span class="caps">CDP</span>
+             peer detected.
 
      <b>-f</b>      Enable the support of <span class="caps">FDP</span> protocol to deal with Foundry routers
              that do not speak <span class="caps">LLDP</span>. If repeated, <span class="caps">FDP</span> packets will be sent
@@ -177,9 +179,13 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              faces (described below), this option can use wildcards and
              inversions.  Without this option, the first IPv4 and the first
              IPv6 are used. If only negative patterns are provided, only one
-             IPv4 and one IPv6 addresses are choosen. Otherwise, many of
-             them can be selected. If you want to blacklist IPv6 addresses,
-             you can use <u>!*:*</u>.
+             IPv4 and one IPv6 addresses are chosen. Otherwise, many of them
+             can be selected. If you want to blacklist IPv6 addresses, you
+             can use <u>!*:*</u>.
+
+     <b>-u</b> <u>file</u>
+             Specify the Unix-domain socket used for communication with
+             lldpctl(8).
 
      <b>-I</b> <u>interfaces</u>
              Specify which interface to listen to. Without this option,
@@ -217,6 +223,10 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
      <b>-H</b> <u>hide</u>
              Filter neighbors. See section <u><span class="caps">FILTERING</span></u> <u><span class="caps">NEIGHBORS</span></u> for details.
+
+     <b>-L</b> <u>lldpcli</u>
+             Provide an alternative path to <b>lldpcli</b> for configuration. If
+             empty, does not use <b>lldpcli</b> for configuration.
 
      <b>-v</b>      Show <b>lldpd</b> version.
 
@@ -297,9 +307,14 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 <b><span class="caps">FILES</span></b>
      /var/run/lldpd.socket    Unix-domain socket used for communication with
                               lldpctl(8).
+     /etc/lldpd.conf          Configuration file for <b>lldpd</b>.  Commands in
+                              this files are executed by lldpcli(8) at
+                              start.
+     /etc/lldpd.d             Directory containing configuration files whose
+                              commands are executed by lldpcli(8) at start.
 
 <b><span class="caps">SEE</span></b> <b><span class="caps">ALSO</span></b>
-     lldpctl(8), snmpd(8)
+     lldpctl(8), lldpcli(8), snmpd(8)
 
 <b><span class="caps">HISTORY</span></b>
      The <b>lldpd</b> program is inspired from a preliminary work of Reyk Floeter.
@@ -311,13 +326,13 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.1):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.2):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
 <b><span class="caps">SYNOPSIS</span></b>
-     <b>lldpcli</b> [<b>-dv</b>] [<b>-f</b> <u>format</u>] [<u>command</u> <u>&#8230;</u>]
-     <b>lldpctl</b> [<b>-dv</b>] [<b>-f</b> <u>format</u>] [<u>interfaces</u> <u>&#8230;</u>]
+     <b>lldpcli</b> [<b>-dv</b>] [<b>-u</b> <u>file</u>] [<b>-f</b> <u>format</u>] [<b>-c</b> <u>file</u>] [<u>command</u> <u>&#8230;</u>]
+     <b>lldpctl</b> [<b>-dv</b>] [<b>-u</b> <u>file</u>] [<b>-f</b> <u>format</u>] [<u>interfaces</u> <u>&#8230;</u>]
 
 <b><span class="caps">DESCRIPTION</span></b>
      The <b>lldpcli</b> program controls lldpd(8) daemon.
@@ -331,11 +346,19 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
      <b>-d</b>      Enable more debugging information.
 
+     <b>-u</b>      Specify the Unix-domain socket used for communication with
+             lldpd(8).
+
      <b>-v</b>      Show <b>lldpcli</b> version.
 
      <b>-f</b> <u>format</u>
              Choose the output format. Currently <u>plain</u>, <u>xml</u>, <u>json</u> and
              <u>keyvalue</u> formats are available. The default is <u>plain</u>.
+
+     <b>-c</b> <u>file</u>
+             Read the given configuration file. This option may be repeated
+             several times. If a directory is provided, each file contained
+             in it will be read  if ending by .conf.  Order is alphabetical.
 
      When invoked as <b>lldpctl</b>, <b>lldpcli</b> will display detailed information
      about each neighbors on the specified interfaces or on all interfaces
@@ -349,6 +372,14 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
        <b>exit</b>
 
              Quit <b>lldpcli</b>.
+
+       <b>help</b> [&#8230;]
+
+             Display general help or help about a command. Also, you can get
+             help using the completion or by pressing the ?  key. However,
+             completion and inline help may be unavailable if <b>lldpcli</b> was
+             compiled without readline support but <b>help</b> command is always
+             available.
 
        <b>show</b> <b>neighbors</b> [ports <u>ethX</u> [,&#8230;]] [<b>details</b> | <b>summary</b>] [<b>hidden</b>]
 
@@ -376,6 +407,12 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
              Make lldpd(8) update its information and send new <span class="caps">LLDP</span> <span class="caps">PDU</span> on
              all interfaces.
+
+       <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>lldp</b> <b>tx-interval</b> <u>interval</u>
+
+             Change transmit delay to the specified value in seconds. The
+             transmit delay is the delay between two transmissions of <span class="caps">LLDP</span>
+             <span class="caps">PDU</span>. The default value is 30 seconds.
 
        <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>med</b> <b>location</b> <b>coordinate</b> <b>latitude</b>
        <u>latitude</u> <b>longitude</b> <u>longitude</u> <b>altitude</b> <u>altitude</u> <u>unit</u> <b>datum</b> <u>datum</u>
@@ -578,6 +615,18 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
                    configure dot3 power pd supported enabled powerpairs
                    spare class 3 type 1 source pse priority low requested
                    10000 allocated 15000
+
+       <b>pause</b>
+
+             Pause <b>lldpd</b> operations.  <b>lldpd</b> will not send any more frames or
+             receive ones. This can be undone with <b>resume</b> command.
+
+       <b>resume</b>
+
+             Resume <b>lldpd</b> operations.  <b>lldpd</b> will start to send and receive
+             frames. This command is issued internally after processing con-
+             figuration but can be used at any time if a manual <b>pause</b> com-
+             mand is issued.
 
 <b><span class="caps">FILES</span></b>
      /var/run/lldpd.socket    Unix-domain socket used for communication with
