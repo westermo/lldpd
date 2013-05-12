@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.2.tar.gz">
-  <div title="Download latest version of lldpd">0.7.2</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.3.tar.gz">
+  <div title="Download latest version of lldpd">0.7.3</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.2):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.3):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -326,7 +326,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.2):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.3):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -403,6 +403,13 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
              Display global configuration of lldpd(8) daemon.
 
+       <b>show</b> <b>statistics</b> [ports <u>ethX</u> [,&#8230;]] [<b>summary</b>]
+
+             Report <span class="caps">LLDP</span>-related statistics, like the number of <span class="caps">LLDPDU</span>
+             transmitted, received, discarded or unrecognized. When specify-
+             ing ports, only the statistics from the given port are
+             reported. With <b>summary</b> the statistics of each port is summed.
+
        <b>update</b>
 
              Make lldpd(8) update its information and send new <span class="caps">LLDP</span> <span class="caps">PDU</span> on
@@ -414,6 +421,20 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              transmit delay is the delay between two transmissions of <span class="caps">LLDP</span>
              <span class="caps">PDU</span>. The default value is 30 seconds.
 
+       <b>configure</b> <b>med</b> <b>fast-start</b> <b>enable</b> | <b>tx-interval</b> <u>interval</u>
+
+             Configure <span class="caps">LLDP</span>-<span class="caps">MED</span> fast start mechanism. When a new <span class="caps">LLDP</span>-<span class="caps">MED</span>-
+             enabled neighbor is detected, fast start allows <b>lldpd</b> to
+             shorten the interval between two <span class="caps">LLDPDU</span>.  <b>enable</b> should enable
+             <span class="caps">LLDP</span>-<span class="caps">MED</span> fast start while <b>tx-interval</b> specifies the interval
+             between two <span class="caps">LLDPDU</span> in seconds. The default interval is 1 sec-
+             ond. Once 4 <span class="caps">LLDPDU</span> have been sent, the fast start mechanism is
+             disabled until a new neighbor is detected.
+
+       <b>unconfigure</b> <b>med</b> <b>fast-start</b>
+
+             Disable <span class="caps">LLDP</span>-<span class="caps">MED</span> fast start mechanism.
+
        <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>med</b> <b>location</b> <b>coordinate</b> <b>latitude</b>
        <u>latitude</u> <b>longitude</b> <u>longitude</u> <b>altitude</b> <u>altitude</u> <u>unit</u> <b>datum</b> <u>datum</u>
 
@@ -423,14 +444,15 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              format of <u>longitude</u> is a decimal floating point number followed
              either by <u>E</u> or <u>W</u>.  <u>altitude</u> is a decimal floating point number
              followed either by <u>m</u> when expressed in meters or <u>f</u> when
-             expressed in floors.  <u>datum</u> is one of those values:
+             expressed in floors. A space is expected between the floating
+             point number and the unit.  <u>datum</u> is one of those values:
                      &raquo;   <span class="caps">WGS84</span>
                      &raquo;   <span class="caps">NAD83</span>
                      &raquo;   <span class="caps">NAD83</span>/<span class="caps">MLLW</span>
 
              A valid use of this command is:
                    configure ports eth0 med location coordinate latitude
-                   48.85667N longitude 2.2014E altitude 117.47m datum <span class="caps">WGS84</span>
+                   48.85667N longitude 2.2014E altitude 117.47 m datum <span class="caps">WGS84</span>
 
        <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>med</b> <b>location</b> <b>address</b> <b>country</b> <u>country</u>
        [<u>type</u> <u>value</u> [&#8230;]]
