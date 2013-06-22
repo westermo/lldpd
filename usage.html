@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.3.tar.gz">
-  <div title="Download latest version of lldpd">0.7.3</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.4.tar.gz">
+  <div title="Download latest version of lldpd">0.7.4</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.3):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.4):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -326,7 +326,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.3):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.4):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -415,11 +415,42 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Make lldpd(8) update its information and send new <span class="caps">LLDP</span> <span class="caps">PDU</span> on
              all interfaces.
 
-       <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>lldp</b> <b>tx-interval</b> <u>interval</u>
+       <b>configure</b> <b>system</b> <b>description</b> <u>description</u>
+
+             Override chassis description with the provided value instead of
+             using kernel name, node name, kernel version, build date and
+             architecture.
+
+       <b>configure</b> <b>system</b> <b>platform</b> <u>description</u>
+
+             Override platform description with the provided value instead
+             of using kernel name. This value is currently only used for
+             <span class="caps">CDP</span>.
+
+       <b>configure</b> <b>system</b> <b>interface</b> <b>pattern</b> <u>pattern</u>
+
+             Set the pattern of valid interfaces to use. When not set, <b>lldpd</b>
+             will listen on all available interfaces. This option can use
+             wildcards. Several interfaces can be specified separated by
+             commas.  It is also possible to blacklist an interface by suf-
+             fixing it with an exclamation mark. When an interface is both
+             specified with and without an exclamation mark, it is black-
+             listed. For example, with <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only lis-
+             ten to interfaces starting by <u>eth</u> with the exception of <u>eth1</u>
+             and <u>eth2</u>.
+
+       <b>configure</b> <b>lldp</b> <b>tx-interval</b> <u>interval</u>
 
              Change transmit delay to the specified value in seconds. The
              transmit delay is the delay between two transmissions of <span class="caps">LLDP</span>
              <span class="caps">PDU</span>. The default value is 30 seconds.
+
+       <b>configure</b> <b>lldp</b> <b>tx-hold</b> <u>hold</u>
+
+             Change transmit hold value to the specified value. This value
+             is used to compute the <span class="caps">TTL</span> of transmitted packets which is the
+             product of this value and of the transmit delay. The default
+             value is 4 and therefore the default <span class="caps">TTL</span> is 120 seconds.
 
        <b>configure</b> <b>med</b> <b>fast-start</b> <b>enable</b> | <b>tx-interval</b> <u>interval</u>
 
