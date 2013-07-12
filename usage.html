@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.5.tar.gz">
-  <div title="Download latest version of lldpd">0.7.5</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.6.tar.gz">
+  <div title="Download latest version of lldpd">0.7.6</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.5):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.6):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -326,7 +326,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.5):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.6):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -438,6 +438,13 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              listed. For example, with <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only lis-
              ten to interfaces starting by <u>eth</u> with the exception of <u>eth1</u>
              and <u>eth2</u>.
+
+       <b>configure</b> <b>system</b> <b>interface</b> <b>description</b>
+
+             Some <span class="caps">OS</span> allows the user to set a description for an interface.
+             Setting this option will enable <b>lldpd</b> to override this descrip-
+             tion with the name of the peer neighbor if one is found or with
+             the number of neighbors found.
 
        <b>configure</b> <b>lldp</b> <b>tx-interval</b> <u>interval</u>
 

@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.5.tar.gz">
-  <div title="Download latest version of lldpd">0.7.5</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.6.tar.gz">
+  <div title="Download latest version of lldpd">0.7.6</div>
 </a>
 
   <nav>
@@ -99,12 +99,14 @@ in <code>/etc/group</code>. The user must not be able to login, have its home as
 <p>If <code>lldpcli</code> is not able to provide completion, you can use the <code>help</code>
 command instead or install the <span class="caps">GNU</span> Readline library on your&nbsp;system.</p>
 <h1 id="mac-os-x">Mac <span class="caps">OS</span>&nbsp;X</h1>
-<p>The easiest way is to use <a href="http://mxcl.github.com/homebrew/" title="Homebrew: the missing package manager for OS X">Homebrew</a>. Check the website if you don&#8217;t
-have it, it is easy to install. Once installed, type in a&nbsp;terminal:</p>
+<p>The easiest way is to use the
+<a href="http://media.luffy.cx/files/lldpd/lldpd-0.7.6.pkg" title="lldpd 0.7.6 version for OSX">installer package for <span class="caps">OS</span> X</a>. You need at least Mac&nbsp;<span class="caps">OS</span> X 10.6.</p>
+<p>Alternatively, you can use <a href="http://mxcl.github.com/homebrew/" title="Homebrew: the missing package manager for OS X">Homebrew</a>. Check the website if you
+don&#8217;t have it, it is easy to install. Once installed, type in a&nbsp;terminal:</p>
 <div class="codehilite"><pre><span class="gp">$</span> brew install https://raw.github.com/vincentbernat/lldpd/master/osx/lldpd.rb
 <span class="gp">#</span><span class="c">####################################################################### 100.0%</span>
-<span class="go">==&gt; Downloading http://media.luffy.cx/files/lldpd/lldpd-0.7.5.tar.gz</span>
-<span class="go">==&gt; ./configure --prefix=/usr/local/Cellar/lldpd/0.7.5 --with-xml --with-readline</span>
+<span class="go">==&gt; Downloading http://media.luffy.cx/files/lldpd/lldpd-0.7.6.tar.gz</span>
+<span class="go">==&gt; ./configure --prefix=/usr/local/Cellar/lldpd/0.7.6 --with-xml --with-readline</span>
 <span class="go">[...]</span>
 </pre></div>
 
@@ -112,37 +114,13 @@ have it, it is easy to install. Once installed, type in a&nbsp;terminal:</p>
 <p>Pay attention at the instructions at the end of the build: they
 explain how to create <code>_lldpd</code> user and group and how to run <code>lldpd</code>
 when the system&nbsp;starts.</p>
-<p>If you don&#8217;t want to use <a href="http://mxcl.github.com/homebrew/" title="Homebrew: the missing package manager for OS X">Homebrew</a>, you will need to
-<a href="#install-from-source">build <em>lldpd</em> from source</a>. To create <code>_lldpd</code> user and <code>_group</code>, you
-need to use <code>dscl</code>. First, locate a free <span class="caps">UID</span> and&nbsp;<span class="caps">GID</span>:</p>
-<div class="codehilite"><pre><span class="gp">$</span> dscl . list /Users uid
-<span class="gp">$</span> dscl . list /Groups gid
-</pre></div>
-
-
-<p>Let&#8217;s say that 274 is not used. Let&#8217;s create the appropriate&nbsp;user:</p>
-<div class="codehilite"><pre><span class="gp">$</span> sudo dscl . -create /Groups/_lldpd
-<span class="gp">$</span> sudo dscl . -create /Groups/_lldpd PrimaryGroupID 274
-<span class="gp">$</span> sudo dscl . -create /Groups/_lldpd Password <span class="s2">&quot;*&quot;</span>
-<span class="gp">$</span> sudo dscl . -create /Groups/_lldpd RealName <span class="s2">&quot;lldpd privilege separation group&quot;</span>
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd UserShell /usr/bin/false
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd NFSHomeDirectory /var/empty
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd PrimaryGroupID 274
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd UniqueID 274
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd Password <span class="s2">&quot;*&quot;</span>
-<span class="gp">$</span> sudo dscl . -create /Users/_lldpd RealName <span class="s2">&quot;lldpd privilege separation user&quot;</span>
-</pre></div>
-
-
-<p>You still need to create <code>/var/run/lldpd</code> and to integrate <code>lldpd</code> in
-<code>launchd</code> yourself.</p>
+<p>At least, you can <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
 <h1 id="install-from-source">Install from&nbsp;source</h1>
 <p>This is the last resort method. Other methods are usually&nbsp;simpler.</p>
 <p>You first need to download the latest version
-(<a href="http://media.luffy.cx/files/lldpd/lldpd-0.7.5.tar.gz" title="lldpd 0.7.5 version">0.7.5</a>). You need a working build&nbsp;environment.</p>
-<div class="codehilite"><pre><span class="gp">$</span> tar zxvf ~/download/lldpd-0.7.5.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>lldpd-0.7.5
+(<a href="http://media.luffy.cx/files/lldpd/lldpd-0.7.6.tar.gz" title="lldpd 0.7.6 version">0.7.6</a>). You need a working build&nbsp;environment.</p>
+<div class="codehilite"><pre><span class="gp">$</span> tar zxvf ~/download/lldpd-0.7.6.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>lldpd-0.7.6
 <span class="gp">$</span> mkdir build
 <span class="gp">$</span> <span class="nb">cd </span>build
 <span class="gp">$</span> ../configure
@@ -182,7 +160,7 @@ as you except and&nbsp;continue.</p>
 <span class="go">  <span class="caps">CCLD</span>   libcompat.la</span>
 <span class="go">  <span class="caps">CC</span>     log.lo</span>
 <span class="go">[...]</span>
-<span class="go">make[1]: Leaving directory `/home/bernat/src/lldpd-0.7.5&#39;</span>
+<span class="go">make[1]: Leaving directory `/home/bernat/src/lldpd-0.7.6&#39;</span>
 </pre></div>
 
 
