@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="canonical" href="https://vincentbernat.github.com/lldpd//installation.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|Libre+Baskerville:400,400italic,700" type="text/css">
-  <link rel="stylesheet" href="/lldpd/media/css/lldpd.fd9c79b0.css" type="text/css">
+  <link rel="stylesheet" href="/lldpd/media/css/lldpd.96ef1e60.css" type="text/css">
   <script src="/lldpd/media/js/mp.e3771c26.js"></script>
 </head>
 <body>
@@ -88,8 +88,8 @@ to install it. You can also <a href="#install-from-source">build <em>lldpd</em> 
 the instructions available on the website. It is also possible to
 <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
 <h1 id="bsd"><span class="caps">BSD</span></h1>
-<p><code>lldpd</code> is currently not available in the port tree of any
-<span class="caps">BSD</span>. Therefore, you have to <a href="#install-from-source">build <em>lldpd</em> from source</a>. You can add
+<p><code>lldpd</code> is currently not available in the ports tree of any
+<span class="caps">BSD</span><sup id="fnref:ports"><a href="#fn:ports" rel="footnote">1</a></sup>. Therefore, you have to <a href="#install-from-source">build <em>lldpd</em> from source</a>. You can add
 <code>_lldpd</code> user with <code>vipw</code> and add <code>_lldpd</code> group by adding it manually
 in <code>/etc/group</code>. The user must not be able to login, have its home as
 <code>/var/empty</code> and a disabled shell (like <code>/bin/false</code>).</p>
@@ -178,7 +178,17 @@ have to complete the following steps by yourself. They are system&nbsp;specifics
 </ul>
 <p><code>../configure</code> accepts several options. You can get them with
 <code>../configure --help</code>. The most interesting ones are <code>--with-snmp</code> and
-<code>--with-xml</code>.</p>    </div>
+<code>--with-xml</code>.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:ports">
+<p>It has been added recently in DragonFly <span class="caps">BSD</span>, NetBSD and
+      OpenBSD ports tree. However, it is currently not present in
+      their respective stable branches.&#160;<a href="#fnref:ports" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>    </div>
   </article>
 
 </body>
