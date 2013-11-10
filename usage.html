@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.6.tar.gz">
-  <div title="Download latest version of lldpd">0.7.6</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.7.tar.gz">
+  <div title="Download latest version of lldpd">0.7.7</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.6):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.7):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -326,7 +326,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.6):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.7):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -458,6 +458,22 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              is used to compute the <span class="caps">TTL</span> of transmitted packets which is the
              product of this value and of the transmit delay. The default
              value is 4 and therefore the default <span class="caps">TTL</span> is 120 seconds.
+
+       <b>configure</b> <b>system</b> <b>bond-slave-src-mac-type</b> <u>value</u>
+
+             Set the type of src mac in lldp frames sent on bond slaves
+
+             Valid types are:
+               <b>real</b>  Slave real mac
+               <b>zero</b>  All zero mac
+               <b>fixed</b>
+                     An arbitrary fixed value (from a 3Com card)
+               <b>local</b>
+                     Real mac with locally administered bit set. If the real
+                     mac already has the locally administered bit set,
+                     default to the fixed value.
+
+             Default value for <b>bond-slave-src-mac-type</b> is <b>fixed</b>
 
        <b>configure</b> <b>med</b> <b>fast-start</b> <b>enable</b> | <b>tx-interval</b> <u>interval</u>
 
