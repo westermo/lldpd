@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.10.tar.gz">
-  <div title="Download latest version of lldpd">0.7.10</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.11.tar.gz">
+  <div title="Download latest version of lldpd">0.7.11</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.10):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.11):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -192,16 +192,16 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
      <b>-I</b> <u>interfaces</u>
              Specify which interface to listen to. Without this option,
-             <b>lldpd</b> will listen on all available interfaces. This option can
-             use wildcards. Several interfaces can be specified separated by
-             commas.  It is also possible to blacklist an interface by suf-
-             fixing it with an exclamation mark. It is possible to whitelist
-             an interface by suffixing it with two exclamation marks. A
-             whitelisted interface beats a blacklisted interfaces which
-             beats a simple matched interface. For example, with
-             <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only listen to interfaces starting
-             by <u>eth</u> with the exception of <u>eth1</u> and <u>eth2</u>.  While with
-             <u>*,!eth*,!!eth1</u> <b>lldpd</b> will listen to all interfaces, except
+             <b>lldpd</b> will listen on all available physical interfaces. This
+             option can use wildcards. Several interfaces can be specified
+             separated by commas.  It is also possible to blacklist an
+             interface by suffixing it with an exclamation mark. It is pos-
+             sible to whitelist an interface by suffixing it with two excla-
+             mation marks. A whitelisted interface beats a blacklisted
+             interfaces which beats a simple matched interface. For example,
+             with <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only listen to interfaces
+             starting by <u>eth</u> with the exception of <u>eth1</u> and <u>eth2</u>.  While
+             with <u>*,!eth*,!!eth1</u> <b>lldpd</b> will listen to all interfaces, except
              interfaces starting by <u>eth</u> with the exception of <u>eth1</u>.  When an
              exact match is found, it will circumvent some tests. For exam-
              ple, if <u>eth0.12</u> is specified, it will be accepted even if this
@@ -334,7 +334,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.10):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.11):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -443,15 +443,21 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
        <b>configure</b> <b>system</b> <b>interface</b> <b>pattern</b> <u>pattern</u>
 
-             Set the pattern of valid interfaces to use. When not set, <b>lldpd</b>
-             will listen on all available interfaces. This option can use
-             wildcards. Several interfaces can be specified separated by
-             commas.  It is also possible to blacklist an interface by suf-
-             fixing it with an exclamation mark. When an interface is both
-             specified with and without an exclamation mark, it is black-
-             listed. For example, with <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only lis-
-             ten to interfaces starting by <u>eth</u> with the exception of <u>eth1</u>
-             and <u>eth2</u>.
+             Specify which interface to listen to. Without this option,
+             <b>lldpd</b> will listen on all available physical interfaces. This
+             option can use wildcards. Several interfaces can be specified
+             separated by commas.  It is also possible to blacklist an
+             interface by suffixing it with an exclamation mark. It is pos-
+             sible to whitelist an interface by suffixing it with two excla-
+             mation marks. A whitelisted interface beats a blacklisted
+             interfaces which beats a simple matched interface. For example,
+             with <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only listen to interfaces
+             starting by <u>eth</u> with the exception of <u>eth1</u> and <u>eth2</u>.  While
+             with <u>*,!eth*,!!eth1</u> <b>lldpcli</b> will listen to all interfaces,
+             except interfaces starting by <u>eth</u> with the exception of <u>eth1</u>.
+             When an exact match is found, it will circumvent some tests.
+             For example, if <u>eth0.12</u> is specified, it will be accepted even
+             if this is a <span class="caps">VLAN</span> interface.
 
        <b>configure</b> <b>system</b> <b>interface</b> <b>description</b>
 
