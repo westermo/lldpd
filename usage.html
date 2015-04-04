@@ -5,7 +5,7 @@
     <title>lldpd » implementation of IEEE 802.1ab | Usage</title>
     <meta name="keywords" content="lldpd, 802.1ab, network, discovery, cdp, edp, snmp">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="canonical" href="https://vincentbernat.github.com/lldpd//usage.html">
+  <link rel="canonical" href="https://vincentbernat.github.com/lldpd//lldpd/usage.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|Libre+Baskerville:400,400italic,700" type="text/css">
   <link rel="stylesheet" href="/lldpd/media/css/lldpd.96ef1e60.css" type="text/css">
   <script src="/lldpd/media/js/mp.e3771c26.js"></script>
@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.13.tar.gz">
-  <div title="Download latest version of lldpd">0.7.13</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.14.tar.gz">
+  <div title="Download latest version of lldpd">0.7.14</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.13):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.14):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -181,10 +181,11 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Specify the management addresses of this system. As for inter-
              faces (described below), this option can use wildcards and
              inversions.  Without this option, the first IPv4 and the first
-             IPv6 are used. If only negative patterns are provided, only one
-             IPv4 and one IPv6 addresses are chosen. Otherwise, many of them
-             can be selected. If you want to blacklist IPv6 addresses, you
-             can use <u>!*:*</u>.
+             IPv6 are used. If an exact <span class="caps">IP</span> address is provided, it is used
+             as a management address without any check. If only negative
+             patterns are provided, only one IPv4 and one IPv6 addresses are
+             chosen. Otherwise, many of them can be selected. If you want to
+             blacklist IPv6 addresses, you can use <u>!*:*</u>.
 
      <b>-u</b> <u>file</u>
              Specify the Unix-domain socket used for communication with
@@ -334,7 +335,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.13):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.14):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -526,17 +527,19 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Specify the management addresses of this system. As for inter-
              faces (described above), this option can use wildcards and
              inversions.  Without this option, the first IPv4 and the first
-             IPv6 are used. If only negative patterns are provided, only one
-             IPv4 and one IPv6 addresses are chosen. Otherwise, many of them
-             can be selected. If you want to blacklist IPv6 addresses, you
-             can use <u>!*:*</u>.
+             IPv6 are used. If an exact <span class="caps">IP</span> address is provided, it is used
+             as a management address without any check. If only negative
+             patterns are provided, only one IPv4 and one IPv6 addresses are
+             chosen. Otherwise, many of them can be selected. If you want to
+             blacklist IPv6 addresses, you can use <u>!*:*</u>.
 
        <b>unconfigure</b> <b>system</b> <b>ip</b> <b>management</b> <b>pattern</b>
 
              Unset any specific pattern for matching management addresses.
              This option undoes the previous one.
 
-       <b>configure</b> <b>portidsubtype</b> <b>ifname</b> <b>ifname</b> | <b>macaddress</b>
+       <b>configure</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b> | <b>local</b> <u>value</u>
+       [<b>description</b> <u>description</u>]
 
              Force port <span class="caps">ID</span> subtype. By default, <b>lldpcli</b> will use the <span class="caps">MAC</span>
              address as port identifier and the interface name as port
@@ -544,7 +547,10 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              the interface name will be used as port identifier and the
              description will be the interface alias. With this command, you
              can force the port identifier to be the interface name (with
-             <b>ifname</b>) or the <span class="caps">MAC</span> address (with <b>macaddress</b>).
+             <b>ifname</b>), the <span class="caps">MAC</span> address (with <b>macaddress</b>) or a local value
+             (with <b>value</b>).  In the latest case, the local value should be
+             provided.  Optionally, a port description can also be provided
+             after the local value.
 
        <b>configure</b> <b>lldp</b> <b>tx-interval</b> <u>interval</u>
 
@@ -657,7 +663,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
                    configure ports eth2 med location elin 911
 
        <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>med</b> <b>policy</b> <b>application</b> <u>application</u>
-       [<b>unknown</b>] [<b>vlan</b> <u>vlan</u>] [<b>priority</b> <u>priority</u>] [<b>dscp</b> <u>dscp</u>]
+       [<b>unknown</b>] [<b>tagged</b>] [<b>vlan</b> <u>vlan</u>] [<b>priority</b> <u>priority</u>] [<b>dscp</b> <u>dscp</u>]
 
              Advertise a specific network policy for the given ports (or for
              all ports if no port was provided). Only the application type
@@ -680,10 +686,12 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
              When a <span class="caps">VLAN</span> is specified with <b>vlan</b> tells which 802.1q <span class="caps">VLAN</span> <span class="caps">ID</span>
              has to be advertised for the network policy. A valid value is
-             between 1 and 4094.  <b>priority</b> allows one to specify <span class="caps">IEEE</span> 802.1d
-             / <span class="caps">IEEE</span> 802.1p Layer 2 Priority, also known as Class of Service
-             (CoS), to be used for the specified application type. It should
-             be one of those values:
+             between 1 and 4094.  <b>tagged</b> tells the <span class="caps">VLAN</span> should be tagged for
+             the specified application type.  <b>priority</b> allows one to specify
+             <span class="caps">IEEE</span> 802.1d / <span class="caps">IEEE</span> 802.1p Layer 2 Priority, also known as Class
+             of Service (CoS), to be used for the specified application
+             type. This field is usually ignored if no <span class="caps">VLAN</span> is specified. It
+             should be one of those values:
                      &raquo;   background
                      &raquo;   spare
                      &raquo;   best-effort
@@ -808,6 +816,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              frames. This command is issued internally after processing con-
              figuration but can be used at any time if a manual <b>pause</b> com-
              mand is issued.
+
 
 <b><span class="caps">FILES</span></b>
      @LLDPD_CTL_SOCKET@    Unix-domain socket used for communication with
