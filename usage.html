@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.14.tar.gz">
-  <div title="Download latest version of lldpd">0.7.14</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.15.tar.gz">
+  <div title="Download latest version of lldpd">0.7.15</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.14):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.15):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -335,7 +335,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.14):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.15):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -538,7 +538,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Unset any specific pattern for matching management addresses.
              This option undoes the previous one.
 
-       <b>configure</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b> | <b>local</b> <u>value</u>
+       <b>configure</b> <b>lldp</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b> | <b>local</b> <u>value</u>
        [<b>description</b> <u>description</u>]
 
              Force port <span class="caps">ID</span> subtype. By default, <b>lldpcli</b> will use the <span class="caps">MAC</span>
@@ -564,6 +564,17 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              is used to compute the <span class="caps">TTL</span> of transmitted packets which is the
              product of this value and of the transmit delay. The default
              value is 4 and therefore the default <span class="caps">TTL</span> is 120 seconds.
+
+       <b>configure</b> <b>lldp</b> <b>custom-tlv</b> <b>oui</b> <u>oui</u> <b>subtype</b> <u>subtype</u> [<b>oui-info</b> <u>content</u>]
+
+             Emit a custom <span class="caps">TLV</span> for <span class="caps">OUI</span> <u>oui</u>, with subtype <u>subtype</u> and option-
+             naly with the bytes specified in <u>content</u>.  Both <u>oui</u> and <u>content</u>
+             should be a comma-separated list of bytes.  <u>oui</u> must be exactly
+             3-byte long.
+
+       <b>unconfigure</b> <b>lldp</b> <b>custom-tlv</b>
+
+             Remove any previously configured custom <span class="caps">TLV</span>.
 
        <b>configure</b> <b>system</b> <b>bond-slave-src-mac-type</b> <u>value</u>
 
@@ -652,8 +663,8 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
                      &raquo;   script
 
              A valid use of this command is:
-                   configure ports eth1 med location address <span class="caps">US</span> street
-                   &#8220;Commercial Road&#8221; city &#8220;Roseville&#8221;
+                   configure ports eth1 med location address country <span class="caps">US</span>
+                   street &#8220;Commercial Road&#8221; city &#8220;Roseville&#8221;
 
        <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>med</b> <b>location</b> <b>elin</b> <u>number</u>
 
@@ -800,10 +811,10 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
              Here are two valid uses of this command:
                    configure ports eth3 dot3 power pse supported enabled
-                   paircontrol powerpairs spare class 3
+                   paircontrol powerpairs spare class class-3
                    configure dot3 power pd supported enabled powerpairs
-                   spare class 3 type 1 source pse priority low requested
-                   10000 allocated 15000
+                   spare class class-3 type 1 source pse priority low
+                   requested 10000 allocated 15000
 
        <b>pause</b>
 
