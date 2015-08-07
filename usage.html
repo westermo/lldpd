@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.15.tar.gz">
-  <div title="Download latest version of lldpd">0.7.15</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.16.tar.gz">
+  <div title="Download latest version of lldpd">0.7.16</div>
 </a>
 
   <nav>
@@ -51,7 +51,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.15):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.16):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -335,7 +335,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.15):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.16):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -401,6 +401,12 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              den by the smart filter. When specifying one or several ports,
              the information displayed is limited to the given list of
              ports.
+
+       <b>show</b> <b>chassis</b> [<b>details</b> | <b>summary</b>]
+
+             Display information about local chassis. With <b>summary</b>, most
+             details are skipped. On the other hand, with <b>details</b>, all
+             available information will be displayed, giving a verbose view.
 
        <b>watch</b> [ports <u>ethX</u> [,&#8230;]] [<b>details</b> | <b>summary</b>] [<b>hidden</b>]
 
@@ -538,6 +544,27 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Unset any specific pattern for matching management addresses.
              This option undoes the previous one.
 
+       <b>configure</b> <b>system</b> <b>bond-slave-src-mac-type</b> <u>value</u>
+
+             Set the type of src mac in lldp frames sent on bond slaves
+
+             Valid types are:
+               <b>real</b>  Slave real mac
+               <b>zero</b>  All zero mac
+               <b>fixed</b>
+                     An arbitrary fixed value (00:60:08:69:97:ef)
+               <b>local</b>
+                     Real mac with locally administered bit set. If the real
+                     mac already has the locally administered bit set, fall-
+                     back to the fixed value.
+
+             Default value for <b>bond-slave-src-mac-type</b> is <b>local</b>.  Some
+             switches may complain when using one of the two other possible
+             values (either because 00:00:00:00:00:00 is not a valid <span class="caps">MAC</span> or
+             because the <span class="caps">MAC</span> address is flapping from one port to another).
+             Using <b>local</b> might lead to a duplicate <span class="caps">MAC</span> address on the net-
+             work (but this is quite unlikely).
+
        <b>configure</b> <b>lldp</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b> | <b>local</b> <u>value</u>
        [<b>description</b> <u>description</u>]
 
@@ -575,27 +602,6 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
        <b>unconfigure</b> <b>lldp</b> <b>custom-tlv</b>
 
              Remove any previously configured custom <span class="caps">TLV</span>.
-
-       <b>configure</b> <b>system</b> <b>bond-slave-src-mac-type</b> <u>value</u>
-
-             Set the type of src mac in lldp frames sent on bond slaves
-
-             Valid types are:
-               <b>real</b>  Slave real mac
-               <b>zero</b>  All zero mac
-               <b>fixed</b>
-                     An arbitrary fixed value (00:60:08:69:97:ef)
-               <b>local</b>
-                     Real mac with locally administered bit set. If the real
-                     mac already has the locally administered bit set, fall-
-                     back to the fixed value.
-
-             Default value for <b>bond-slave-src-mac-type</b> is <b>local</b>.  Some
-             switches may complain when using one of the two other possible
-             values (either because 00:00:00:00:00:00 is not a valid <span class="caps">MAC</span> or
-             because the <span class="caps">MAC</span> address is flapping from one port to another).
-             Using <b>local</b> might lead to a duplicate <span class="caps">MAC</span> address on the net-
-             work (but this is quite unlikely).
 
        <b>configure</b> <b>med</b> <b>fast-start</b> <b>enable</b> | <b>tx-interval</b> <u>interval</u>
 
