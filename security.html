@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+    <title>lldpd » implementation of IEEE 802.1ab | Security</title>
+    <meta name="keywords" content="lldpd, 802.1ab, network, discovery, cdp, edp, snmp">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="canonical" href="https://vincentbernat.github.com/lldpd//lldpd/security.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata|Libre+Baskerville:400,400italic,700" type="text/css">
+  <link rel="stylesheet" href="/lldpd/media/css/lldpd.3656e4fb.css" type="text/css">
+  <script src="/lldpd/media/js/mp.e3771c26.js"></script>
+</head>
+<body>
+
+  <a class="badge github-forkme" href="https://github.com/vincentbernat/lldpd">
+  <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
+       alt="GitHub badge" title="Fork me on GitHub">
+</a>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.19.tar.gz">
+  <div title="Download latest version of lldpd">0.7.19</div>
+</a>
+
+  <nav>
+
+  <p class="tagline">
+    <em>lldpd</em> is a 802.1ab implementation (LLDP) to
+    help you locate neighbors of all your equipments.
+  </p>
+
+  <ul>
+    <li><a href="/lldpd/index.html">Overview</a></li>
+    <li><a href="/lldpd/features.html">Features</a></li>
+    <li><a href="/lldpd/installation.html">Installation</a></li>
+    <li><a href="/lldpd/usage.html">Usage</a></li>
+    <li><a href="/lldpd/security.html">Security</a></li>
+  </ul>
+</nav>
+
+  <article>
+    <div role="main">
+            <header>
+        <h1>Security</h1>
+      </header>
+      
+      <p><code>lldpd</code> contains several security features to mitigate vulnerabilities
+(privilege separation, chrooted process, …). If you wish to report a
+security issue, either open an <a href="https://github.com/vincentbernat/lldpd/issues/new">issue on GitHub</a> or <a href="mailto:vincent@bernat.im">mail me</a>&nbsp;directly.</p>
+<h1 id="past-vulnerabilities">Past&nbsp;vulnerabilities</h1>
+<ul>
+<li>
+<p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8011"><span class="caps">CVE</span>-2015-8011</a>: buffer overflow when handling management address
+   <span class="caps">TLV</span> for <span class="caps">LLDP</span>. When a remote device was advertising a too large
+   management address while still respecting <span class="caps">TLV</span> boundaries, lldpd
+   would crash due to a buffer overflow. This vulnerability affects
+   the parser which is run in an unprivileged and chrooted
+   process. It does not allow arbitrary code execution
+   unless hardening has been specifically disabled. This bug has been
+   introduced in version 0.6.0. It has been fixed in commit
+   <a href="https://github.com/vincentbernat/lldpd/commit/dd4f16e7e816f2165fba76e3d162cd8d2978dcb2">dd4f16e7</a> and in version&nbsp;0.7.19.</p>
+</li>
+<li>
+<p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-8012"><span class="caps">CVE</span>-2015-8012</a>: crash on malformed management address. When a
+   remote device was advertising a malformed management address, lldpd
+   would crash with an assertion error. This vulnerability affects the
+   parser which is run in an unprivileged and chrooted process. It
+   does not allow arbitrary code execution. This bug has been
+   introduced in version 0.6.0. It has been fixed in commit
+   <a href="https://github.com/vincentbernat/lldpd/commit/793526f8884455f43daecd0a2c46772388417a00">793526f8</a> and in version&nbsp;0.7.19.</p>
+</li>
+</ul>    </div>
+  </article>
+
+</body>
+</html>
