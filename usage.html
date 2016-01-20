@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.7.19.tar.gz">
-  <div title="Download latest version of lldpd">0.7.19</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.9.0.tar.gz">
+  <div title="Download latest version of lldpd">0.9.0</div>
 </a>
 
   <nav>
@@ -52,7 +52,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.7.19):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.0):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -80,8 +80,9 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
      The options are as follows:
 
      <b>-d</b>      Do not daemonize.  If this option is specified, <b>lldpd</b> will run
-             in the foreground and log to <u>stderr</u>.  This option can be speci-
-             fied many times to increase verbosity. When specified three
+             in the foreground. When specified one more time, <b>will</b> <b>log</b> <b>to</b>
+             <u>stderr</u> instead of using syslog. Then, this option can be speci-
+             fied many times to increase verbosity. When specified four
              times, debug logs will be enabled. They can be filtered with <b>-D</b>
              flag.
 
@@ -200,7 +201,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              interface by suffixing it with an exclamation mark. It is pos-
              sible to whitelist an interface by suffixing it with two excla-
              mation marks. A whitelisted interface beats a blacklisted
-             interfaces which beats a simple matched interface. For example,
+             interface which beats a simple matched interface. For example,
              with <u>eth*,!eth1,!eth2</u> <b>lldpd</b> will only use interfaces starting
              by <u>eth</u> with the exception of <u>eth1</u> and <u>eth2</u>.  While with
              <u>*,!eth*,!!eth1</u> <b>lldpd</b> will use all interfaces, except interfaces
@@ -336,7 +337,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.7.19):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.0):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -354,7 +355,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
      The options are as follows:
 
-     <b>-d</b>      Enable more debugging information.
+     <b>-d</b>      Enable more debugging information. This flag can be repeated.
 
      <b>-u</b> <u>socket</u>
              Specify the Unix-domain socket used for communication with
@@ -566,7 +567,9 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Using <b>local</b> might lead to a duplicate <span class="caps">MAC</span> address on the net-
              work (but this is quite unlikely).
 
-       <b>configure</b> <b>lldp</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b> | <b>local</b> <u>value</u>
+       <b>configure</b> <b>lldp</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b>
+
+       <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>lldp</b> <b>portidsubtype</b> <b>local</b> <u>value</u>
        [<b>description</b> <u>description</u>]
 
              Force port <span class="caps">ID</span> subtype. By default, <b>lldpcli</b> will use the <span class="caps">MAC</span>
@@ -592,6 +595,20 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              is used to compute the <span class="caps">TTL</span> of transmitted packets which is the
              product of this value and of the transmit delay. The default
              value is 4 and therefore the default <span class="caps">TTL</span> is 120 seconds.
+
+       <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>lldp</b> <b>status</b> <u>rx-and-tx</u> | <u>rx-only</u> |
+       <u>tx-only</u> | <u>disabled</u>
+
+             Configure the administrative status of the given port. By
+             default, all ports are configured to be in <u>rxAndTx</u> mode. This
+             means they can receive and transmit <span class="caps">LLDP</span> frames (as well as
+             other protocols if needed). In <u>rxOnly</u> mode, they won&#8217;t emit any
+             frames and in <u>txOnly</u> mode, they won&#8217;t receive any frames. In
+             <u>disabled</u> mode, no frame will be sent and any incoming frame
+             will be discarded. This settings do not override the opera-
+             tional mode of the main daemon. If it is configured in receive-
+             only mode (with the <b>-r</b> flag), setting any transmit mode won&#8217;t
+             have any effect.
 
        <b>configure</b> <b>lldp</b> <b>custom-tlv</b> <b>oui</b> <u>oui</u> <b>subtype</b> <u>subtype</u> [<b>oui-info</b> <u>content</u>]
 
@@ -702,22 +719,26 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              work Connectivity Devices. If not specified, the network policy
              for the given application type is defined.
 
-             When a <span class="caps">VLAN</span> is specified with <b>vlan</b> tells which 802.1q <span class="caps">VLAN</span> <span class="caps">ID</span>
+             When a <span class="caps">VLAN</span> is specified with <u>vlan</u> tells which 802.1q <span class="caps">VLAN</span> <span class="caps">ID</span>
              has to be advertised for the network policy. A valid value is
              between 1 and 4094.  <b>tagged</b> tells the <span class="caps">VLAN</span> should be tagged for
-             the specified application type.  <b>priority</b> allows one to specify
-             <span class="caps">IEEE</span> 802.1d / <span class="caps">IEEE</span> 802.1p Layer 2 Priority, also known as Class
-             of Service (CoS), to be used for the specified application
-             type. This field is usually ignored if no <span class="caps">VLAN</span> is specified. It
-             should be one of those values:
-                     &raquo;   background
-                     &raquo;   spare
-                     &raquo;   best-effort
-                     &raquo;   excellent-effort
-                     &raquo;   controlled-load
-                     &raquo;   video
-                     &raquo;   voice
-                     &raquo;   network-control
+             the specified application type.
+
+             <u>priority</u> allows one to specify <span class="caps">IEEE</span> 802.1d / <span class="caps">IEEE</span> 802.1p Layer
+             2 Priority, also known as Class of Service (CoS), to be used
+             for the specified application type. This field is usually
+             ignored if no <span class="caps">VLAN</span> is specified. The names match 802.1D-2004
+             standard (table G-2). Some more recent standards may use dif-
+             ferent labels. Only the numeric values should be relied upon.
+             The accepted labels are:
+                 <b>1</b>   background
+                 <b>0</b>   best-effort
+                 <b>2</b>   excellent-effort
+                 <b>3</b>   critical-applications
+                 <b>4</b>   video
+                 <b>5</b>   voice
+                 <b>6</b>   internetwork-control
+                 <b>7</b>   network-control
 
              <u>dscp</u> represents the <span class="caps">DSCP</span> value to be advertised for the given
              network policy.  DiffServ/Differentiated Services Code Point
