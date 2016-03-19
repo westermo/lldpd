@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.9.1.tar.gz">
-  <div title="Download latest version of lldpd">0.9.1</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.9.2.tar.gz">
+  <div title="Download latest version of lldpd">0.9.2</div>
 </a>
 
   <nav>
@@ -52,7 +52,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.1):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.2):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -240,7 +240,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Provide an alternative path to <b>lldpcli</b> for configuration. If
              empty, does not use <b>lldpcli</b> for configuration.
 
-     <b>-v</b>      Show <b>lldpd</b> version.
+     <b>-v</b>      Show <b>lldpd</b> version. When repeated, show more build information.
 
 <b><span class="caps">FILTERING</span></b> <b><span class="caps">NEIGHBORS</span></b>
      In a heterogeneous network, you may see several different hosts on the
@@ -337,7 +337,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.1):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.2):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -361,7 +361,8 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Specify the Unix-domain socket used for communication with
              lldpd(8).
 
-     <b>-v</b>      Show <b>lldpcli</b> version.
+     <b>-v</b>      Show <b>lldpcli</b> version. When repeated, show more build informa-
+             tion.
 
      <b>-f</b> <u>format</u>
              Choose the output format. Currently <u>plain</u>, <u>xml</u>, <u>json</u> and
@@ -610,16 +611,21 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              only mode (with the <b>-r</b> flag), setting any transmit mode won&#8217;t
              have any effect.
 
-       <b>configure</b> <b>lldp</b> <b>custom-tlv</b> <b>oui</b> <u>oui</u> <b>subtype</b> <u>subtype</u> [<b>oui-info</b> <u>content</u>]
+       <b>configure</b> <b>lldp</b> <b>custom-tlv</b> [<b>add</b> | <b>replace</b>] <b>oui</b> <u>oui</u> <b>subtype</b> <u>subtype</u>
+       [<b>oui-info</b> <u>content</u>]
 
              Emit a custom <span class="caps">TLV</span> for <span class="caps">OUI</span> <u>oui</u>, with subtype <u>subtype</u> and option-
-             naly with the bytes specified in <u>content</u>.  Both <u>oui</u> and <u>content</u>
+             ally with the bytes specified in <u>content</u>.  Both <u>oui</u> and <u>content</u>
              should be a comma-separated list of bytes.  <u>oui</u> must be exactly
-             3-byte long.
+             3-byte long.  If <u>add</u> is specified then the <span class="caps">TLV</span> will be added.
+             This is the default action.  If <u>replace</u> is specified then all
+             TLVs with the same <u>oui</u> and <u>subtype</u> will be replaced.
 
-       <b>unconfigure</b> <b>lldp</b> <b>custom-tlv</b>
+       <b>unconfigure</b> <b>lldp</b> <b>custom-tlv</b> [<b>oui</b> <u>oui</u>] [<b>subtype</b> <u>subtype</u>]
 
-             Remove any previously configured custom <span class="caps">TLV</span>.
+             When no oui is specified, remove all previously configured cus-
+             tom <span class="caps">TLV</span>.  When <span class="caps">OUI</span> <u>oui</u> and subtype <u>subtype</u> is specified, remove
+             specific instances of custom <span class="caps">TLV</span>.
 
        <b>configure</b> <b>med</b> <b>fast-start</b> <b>enable</b> | <b>tx-interval</b> <u>interval</u>
 
