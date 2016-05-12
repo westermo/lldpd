@@ -50,7 +50,7 @@ sources. Once installed, you may want to look
 <li><a href="#gnulinux"><span class="caps">GNU</span>/Linux</a><ul>
 <li><a href="#debian-and-ubuntu">Debian and&nbsp;Ubuntu</a></li>
 <li><a href="#gentoo">Gentoo</a></li>
-<li><a href="#fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span>&nbsp;<span class="caps">SUSE</span></a></li>
+<li><a href="#fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span> <span class="caps">SUSE</span></a></li>
 </ul>
 </li>
 <li><a href="#bsd"><span class="caps">BSD</span></a></li>
@@ -61,7 +61,7 @@ sources. Once installed, you may want to look
 <h1 id="gnulinux"><span class="caps">GNU</span>/Linux</h1>
 <h2 id="debian-and-ubuntu">Debian and&nbsp;Ubuntu</h2>
 <p><code>lldpd</code> is already available in Debian and Ubuntu. You can install it&nbsp;with:</p>
-<div class="codehilite"><pre><span class="gp">$</span> sudo apt-get install lldpd
+<div class="codehilite"><pre><span></span><span class="gp">$</span> sudo apt-get install lldpd
 <span class="go">Reading package lists... Done</span>
 <span class="go">Building dependency tree       </span>
 <span class="go">Reading state information... Done</span>
@@ -84,10 +84,11 @@ well as a working init&nbsp;script.</p>
 <h2 id="gentoo">Gentoo</h2>
 <p><code>lldpd</code> is available in portage. Just issue the command <code>emerge lldpd</code>
 to install it. You can also <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
-<h2 id="fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span>&nbsp;<span class="caps">SUSE</span></h2>
+<h2 id="fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span> <span class="caps">SUSE</span></h2>
 <p>You can install the packages from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build Service</a>. Follow
-the instructions available on the website. It is also possible to
-<a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
+the instructions available on the website. Once installed, you can
+change the options provided to <code>lldpd</code> in <code>/etc/sysconfig/lldpd</code>.</p>
+<p>It is also possible to <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
 <h1 id="bsd"><span class="caps">BSD</span></h1>
 <p><code>lldpd</code> is currently available in the ports tree of most BSDs<sup id="fnref:ports"><a class="footnote-ref" href="#fn:ports" rel="footnote">1</a></sup>.
 Follow the instructions on how to install lldpd from ports by following
@@ -105,11 +106,12 @@ in <code>/etc/group</code>. The user must not be able to login, have its home as
 command instead or install the <span class="caps">GNU</span> Readline library on your&nbsp;system.</p>
 <h1 id="mac-os-x">Mac <span class="caps">OS</span>&nbsp;X</h1>
 <p>The easiest way is to use the
-<a href="http://media.luffy.cx/files/lldpd/lldpd-0.9.2.pkg" title="lldpd 0.9.2 version for OSX">installer package for <span class="caps">OS</span> X</a>. You need at least Mac&nbsp;<span class="caps">OS</span> X 10.6.</p>
+<a href="http://media.luffy.cx/files/lldpd/lldpd-0.9.2.pkg" title="lldpd 0.9.2 version for OSX">installer package for <span class="caps">OS</span> X</a>. You need at least Mac
+<span class="caps">OS</span> X 10.6.</p>
 <p>Alternatively, you can use <a href="http://mxcl.github.com/homebrew/" title="Homebrew: the missing package manager for OS X">Homebrew</a>. Check the website if you
 don&#8217;t have it, it is easy to install. Once installed, type in a&nbsp;terminal:</p>
-<div class="codehilite"><pre><span class="gp">$</span> brew install https://raw.github.com/vincentbernat/lldpd/master/osx/lldpd.rb
-<span class="gp">#</span><span class="c">####################################################################### 100.0%</span>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> brew install https://raw.github.com/vincentbernat/lldpd/master/osx/lldpd.rb
+<span class="gp">#</span><span class="c1">####################################################################### 100.0%</span>
 <span class="go">==&gt; Downloading http://media.luffy.cx/files/lldpd/lldpd-0.9.2.tar.gz</span>
 <span class="go">==&gt; ./configure --prefix=/usr/local/Cellar/lldpd/0.9.2 --with-xml --with-readline</span>
 <span class="go">[...]</span>
@@ -124,12 +126,12 @@ when the system&nbsp;starts.</p>
 <p>This is the last resort method. Other methods are usually&nbsp;simpler.</p>
 <p>You first need to download the latest version
 (<a href="http://media.luffy.cx/files/lldpd/lldpd-0.9.2.tar.gz" title="lldpd 0.9.2 version">0.9.2</a>). You need a working build&nbsp;environment.</p>
-<div class="codehilite"><pre><span class="gp">$</span> tar zxvf ~/download/lldpd-0.9.2.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>lldpd-0.9.2
+<div class="codehilite"><pre><span></span><span class="gp">$</span> tar zxvf ~/download/lldpd-0.9.2.tar.gz
+<span class="gp">$</span> <span class="nb">cd</span> lldpd-0.9.2
 <span class="gp">$</span> mkdir build
-<span class="gp">$</span> <span class="nb">cd </span>build
+<span class="gp">$</span> <span class="nb">cd</span> build
 <span class="gp">$</span> ../configure
-<span class="go">checking for a <span class="caps">BSD</span>-compatible install... /usr/bin/install -c</span>
+<span class="go">checking for a BSD-compatible install... /usr/bin/install -c</span>
 <span class="go">checking whether build environment is sane... yes</span>
 <span class="go">checking for a thread-safe mkdir -p... /bin/mkdir -p</span>
 <span class="go">checking for gawk... gawk</span>
@@ -141,15 +143,15 @@ when the system&nbsp;starts.</p>
 <span class="go">  Linker.........: /usr/bin/ld -m elf_x86_64  -Wl,-z,relro -Wl,-z,now </span>
 <span class="go">  Libevent.......: system</span>
 <span class="go"> Optional features:</span>
-<span class="go">  <span class="caps">SNMP</span> support...: no</span>
-<span class="go">  <span class="caps">CDP</span>............: yes</span>
-<span class="go">  <span class="caps">FDP</span>............: yes</span>
-<span class="go">  <span class="caps">EDP</span>............: yes</span>
-<span class="go">  <span class="caps">SONMP</span>..........: yes</span>
-<span class="go">  <span class="caps">LLDPMED</span>........: yes</span>
-<span class="go">  <span class="caps">DOT1</span>...........: yes</span>
-<span class="go">  <span class="caps">DOT3</span>...........: yes</span>
-<span class="go">  <span class="caps">XML</span> output.....: no</span>
+<span class="go">  SNMP support...: no</span>
+<span class="go">  CDP............: yes</span>
+<span class="go">  FDP............: yes</span>
+<span class="go">  EDP............: yes</span>
+<span class="go">  SONMP..........: yes</span>
+<span class="go">  LLDPMED........: yes</span>
+<span class="go">  DOT1...........: yes</span>
+<span class="go">  DOT3...........: yes</span>
+<span class="go">  XML output.....: no</span>
 <span class="go">---------------------------------------------</span>
 
 <span class="go">Check the above options and compile with:</span>
@@ -160,10 +162,10 @@ when the system&nbsp;starts.</p>
 <p>If this steps fail, feel free to <a href="https://github.com/vincentbernat/lldpd/issues" title="GitHub bug tracker for lldpd">file a bug report</a>. The content
 of <code>config.log</code> should be helpful. Otherwise, check if everything is
 as you except and&nbsp;continue.</p>
-<div class="codehilite"><pre><span class="gp">$</span> make
-<span class="go">  <span class="caps">CC</span>     strlcpy.lo</span>
-<span class="go">  <span class="caps">CCLD</span>   libcompat.la</span>
-<span class="go">  <span class="caps">CC</span>     log.lo</span>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> make
+<span class="go">  CC     strlcpy.lo</span>
+<span class="go">  CCLD   libcompat.la</span>
+<span class="go">  CC     log.lo</span>
 <span class="go">[...]</span>
 <span class="go">make[1]: Leaving directory `/home/bernat/src/lldpd-0.9.2&#39;</span>
 </pre></div>

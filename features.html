@@ -51,7 +51,7 @@ to select the right protocol on each&nbsp;interface:</p>
 <li><abbr title="SynOptics Network Management Protocol"><span class="caps">SONMP</span></abbr>&nbsp;(Nortel)</li>
 <li><abbr title="Foundry Discovery Protocol"><span class="caps">FDP</span></abbr>&nbsp;(Foundry)</li>
 </ul>
-<p>It is able to advertise the following&nbsp;<span class="caps">TLV</span>:</p>
+<p>It is able to advertise the following <span class="caps">TLV</span>:</p>
 <ul>
 <li>System name and&nbsp;description</li>
 <li>Port name and&nbsp;description</li>
@@ -64,7 +64,7 @@ to select the right protocol on each&nbsp;interface:</p>
 <li>Location (<abbr title="Link Layer Discovery Protocol"><span class="caps">LLDP</span></abbr>-<abbr title="Media Endpoint Discovery"><span class="caps">MED</span></abbr>)</li>
 <li>Inventory (<abbr title="Link Layer Discovery Protocol"><span class="caps">LLDP</span></abbr>-<abbr title="Media Endpoint Discovery"><span class="caps">MED</span></abbr>)</li>
 </ul>
-<p><code>lldpd</code> supports many&nbsp;<span class="caps">OS</span>:</p>
+<p><code>lldpd</code> supports many <span class="caps">OS</span>:</p>
 <ul>
 <li><span class="caps">GNU</span>/Linux</li>
 <li>FreeBSD</li>
@@ -77,13 +77,13 @@ to select the right protocol on each&nbsp;interface:</p>
 all those platforms, except on&nbsp;Solaris.</p>
 <p>Discovered neighbors can be queried through a convenient <strong>command
 line</strong>&nbsp;interface:</p>
-<div class="codehilite"><pre><span class="gp">#</span> show neighbors detail
+<div class="codehilite"><pre><span></span><span class="gp">#</span> show neighbors detail
 <span class="go">-------------------------------------------------------------------------------</span>
-<span class="go">Interface:    eth0, via: <span class="caps">LLDP</span>, <span class="caps">RID</span>: 1, Time: 0 day, 00:00:10</span>
+<span class="go">Interface:    eth0, via: LLDP, RID: 1, Time: 0 day, 00:00:10</span>
 <span class="go">  Chassis:     </span>
 <span class="go">    ChassisID:    mac 00:18:f3:03:4e:06</span>
 <span class="go">    SysName:      dev-01.example.com</span>
-<span class="go">    SysDescr:     Debian <span class="caps">GNU</span>/Linux 7.0 (wheezy) Linux 3.7-trunk-amd64 #1 <span class="caps">SMP</span> Debian 3.7.1-1~experimental.1 x86_64</span>
+<span class="go">    SysDescr:     Debian GNU/Linux 7.0 (wheezy) Linux 3.7-trunk-amd64 #1 SMP Debian 3.7.1-1~experimental.1 x86_64</span>
 <span class="go">    MgmtIP:       192.168.20.127</span>
 <span class="go">    Capability:   Bridge, on</span>
 <span class="go">    Capability:   Router, on</span>
@@ -91,15 +91,15 @@ line</strong>&nbsp;interface:</p>
 <span class="go">  Port:        </span>
 <span class="go">    PortID:       mac ea:b8:ab:aa:8c:da</span>
 <span class="go">    PortDescr:    eth1</span>
-<span class="go">    <span class="caps">PMD</span> autoneg:  supported: no, enabled: no</span>
-<span class="go">      <span class="caps">MAU</span> oper type: 10GigBaseR - R <span class="caps">PCS</span>/<span class="caps">PMA</span>, unknown <span class="caps">PMD</span>.</span>
-<span class="go">  <span class="caps">LLDP</span>-<span class="caps">MED</span>:    </span>
-<span class="go">    Device Type:  Media Endpoint (Class <span class="caps">II</span>)</span>
+<span class="go">    PMD autoneg:  supported: no, enabled: no</span>
+<span class="go">      MAU oper type: 10GigBaseR - R PCS/PMA, unknown PMD.</span>
+<span class="go">  LLDP-MED:    </span>
+<span class="go">    Device Type:  Media Endpoint (Class II)</span>
 <span class="go">    Capability:   Capabilities</span>
 <span class="go">    Capability:   Policy</span>
 <span class="go">    Capability:   Location</span>
-<span class="go">    Capability:   <span class="caps">MDI</span>/<span class="caps">PSE</span></span>
-<span class="go">    Capability:   <span class="caps">MDI</span>/<span class="caps">PD</span></span>
+<span class="go">    Capability:   MDI/PSE</span>
+<span class="go">    Capability:   MDI/PD</span>
 <span class="go">    Capability:   Inventory</span>
 <span class="go">    Inventory:   </span>
 <span class="go">      Hardware Revision: System Version</span>
@@ -108,7 +108,7 @@ line</strong>&nbsp;interface:</p>
 <span class="go">      Serial Number: System Serial Number</span>
 <span class="go">      Manufacturer: System manufacturer</span>
 <span class="go">      Model:        System Product Name</span>
-<span class="go">      Asset <span class="caps">ID</span>:     Asset-1234567890</span>
+<span class="go">      Asset ID:     Asset-1234567890</span>
 <span class="go">-------------------------------------------------------------------------------</span>
 </pre></div>
 
