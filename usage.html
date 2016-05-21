@@ -16,8 +16,8 @@
   <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.9.2.tar.gz">
-  <div title="Download latest version of lldpd">0.9.2</div>
+<a class="badge latest-version" href="http://media.luffy.cx/files/lldpd/lldpd-0.9.3.tar.gz">
+  <div title="Download latest version of lldpd">0.9.3</div>
 </a>
 
   <nav>
@@ -52,7 +52,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.2):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.3):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -80,9 +80,9 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
      The options are as follows:
 
      <b>-d</b>      Do not daemonize.  If this option is specified, <b>lldpd</b> will run
-             in the foreground. When specified one more time, <b>will</b> <b>log</b> <b>to</b>
-             <u>stderr</u> instead of using syslog. Then, this option can be speci-
-             fied many times to increase verbosity. When specified four
+             in the foreground. When specified one more time, <b>lldpd</b> will not
+             log to syslog but only to stderr. Then, this option can be
+             specified many times to increase verbosity. When specified four
              times, debug logs will be enabled. They can be filtered with <b>-D</b>
              flag.
 
@@ -337,7 +337,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.2):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.3):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -411,12 +411,14 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              details are skipped. On the other hand, with <b>details</b>, all
              available information will be displayed, giving a verbose view.
 
-       <b>watch</b> [ports <u>ethX</u> [,&#8230;]] [<b>details</b> | <b>summary</b>] [<b>hidden</b>]
+       <b>watch</b> [ports <u>ethX</u> [,&#8230;]] [<b>details</b> | <b>summary</b>] [<b>hidden</b>] [<b>limit</b> <u>X</u>]
 
              Watch for any neighbor changes and report them as soon as they
              happen. When specifying ports, the changes are only reported
              when happening on the given ports.  <b>hidden</b>, <b>summary</b> and <b>details</b>
-             have the same meaning than previously described.
+             have the same meaning than previously described. If <b>limit</b> is
+             specificed, <b>lldpcli</b> will exit after receiving the specified
+             number of events.
 
        <b>show</b> <b>configuration</b>
 
@@ -497,7 +499,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              tion with the name of the peer neighbor if one is found or with
              the number of neighbors found.
 
-       <b>unconfigure</b> <b>system</b> <b>interface</b> <b>descripton</b>
+       <b>unconfigure</b> <b>system</b> <b>interface</b> <b>description</b>
 
              Do not update interface description with the name of the peer
              neighbor. This option undoes the previous one.
@@ -709,7 +711,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Advertise a specific network policy for the given ports (or for
              all ports if no port was provided). Only the application type
              is mandatory.  <u>application</u> should be one of the following val-
-             ues: static const struct value_string port_med_policy_map[] = {
+             ues:
                      &raquo;   voice
                      &raquo;   voice-signaling
                      &raquo;   guest-voice
@@ -778,7 +780,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 
              &raquo;   <span class="caps">PSE</span> may request reduced power using conservation mode
 
-             &raquo;   Being <span class="caps">PSE</span> or <span class="caps">PD</span> is a global paremeter, not a per-port
+             &raquo;   Being <span class="caps">PSE</span> or <span class="caps">PD</span> is a global parameter, not a per-port
                  parameter.  <b>lldpcli</b> does not enforce this: a port can be
                  set as <span class="caps">PD</span> or <span class="caps">PSE</span>. <span class="caps">LLDP</span>-<span class="caps">MED</span> also requires for a <span class="caps">PSE</span> to only
                  have one power source (primary or backup). Again, <b>lldpcli</b>
