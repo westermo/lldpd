@@ -17,8 +17,8 @@
        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="https://media.luffy.cx/files/lldpd/lldpd-0.9.3.tar.gz">
-  <div title="Download latest version of lldpd">0.9.3</div>
+<a class="badge latest-version" href="https://media.luffy.cx/files/lldpd/lldpd-0.9.4.tar.gz">
+  <div title="Download latest version of lldpd">0.9.4</div>
 </a>
 
   <nav>
@@ -53,14 +53,14 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.3):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.4):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
 <b><span class="caps">SYNOPSIS</span></b>
-     <b>lldpd</b> [<b>-dxcseiklrv</b>] [<b>-D</b> <u>debug</u>] [<b>-S</b> <u>description</u>] [<b>-P</b> <u>platform</u>]
-           [<b>-X</b> <u>socket</u>] [<b>-m</b> <u>management</u>] [<b>-u</b> <u>file</u>] [<b>-I</b> <u>interfaces</u>]
-           [<b>-C</b> <u>interfaces</u>] [<b>-M</b> <u>class</u>] [<b>-H</b> <u>hide</u>] [<b>-L</b> <u>lldpcli</u>]
+     <b>lldpd</b> [<b>-dxcseiklrv</b>] [<b>-D</b> <u>debug</u>] [<b>-p</b> <u>pidfile</u>] [<b>-S</b> <u>description</u>]
+           [<b>-P</b> <u>platform</u>] [<b>-X</b> <u>socket</u>] [<b>-m</b> <u>management</u>] [<b>-u</b> <u>file</u>]
+           [<b>-I</b> <u>interfaces</u>] [<b>-C</b> <u>interfaces</u>] [<b>-M</b> <u>class</u>] [<b>-H</b> <u>hide</u>] [<b>-L</b> <u>lldpcli</u>]
 
 <b><span class="caps">DESCRIPTION</span></b>
      <b>lldpd</b> is a daemon able to receive and send <u><span class="caps">LLDP</span></u> frames. The Link Layer
@@ -122,6 +122,10 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
                              Smart filtering of different protocols on the
                              same port.
                  <b>netlink</b>     Netlink subsystem.
+
+     <b>-p</b> <u>pidfile</u>
+             Use the provided <span class="caps">PID</span> file to record <b>lldpd</b> <span class="caps">PID</span> instead of
+             @LLDPD_PID_FILE@.
 
      <b>-k</b>      Disable advertising of kernel release, version and machine.
              Kernel name (ie: Linux) will still be shared, and Inventory
@@ -338,7 +342,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.3):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.4):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -510,9 +514,9 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Enable promiscuous mode on managed interfaces.
 
              When the interface is not managed any more (or when quitting
-             <b>lldpcli</b>), the interface is left in promiscuous mode as it is
-             difficult to know if someone else also put the interface in
-             promiscuous mode.
+             <b>lldpd</b>), the interface is left in promiscuous mode as it is dif-
+             ficult to know if someone else also put the interface in pro-
+             miscuous mode.
 
              This option is known to be useful when the remote switch is a
              Cisco 2960 and the local network card features <span class="caps">VLAN</span> hardware
@@ -571,12 +575,24 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Using <b>local</b> might lead to a duplicate <span class="caps">MAC</span> address on the net-
              work (but this is quite unlikely).
 
+       <b>configure</b> <b>lldp</b> <b>agent-type</b> <b>nearest-bridge</b> | <b>nearest-non-tpmr-bridge</b> |
+       <b>nearest-customer-bridge</b>
+
+             The destination <span class="caps">MAC</span> address used to send <span class="caps">LLDPDU</span> allows an agent
+             to control the propagation of LLDPDUs. By default, the
+             01:80:c2:00:00:0e <span class="caps">MAC</span> address is used and limit the propagation
+             of the <span class="caps">LLDPDU</span> to the nearest bridge (<b>nearest-bridge</b>).  To
+             instruct <b>lldpd</b> to use the 01:80:c2:00:00:03 <span class="caps">MAC</span> address
+             instead, use <b>nearest-nontpmr-bridge</b> instead.  To use the
+             01:80:c2:00:00:00 <span class="caps">MAC</span> address instead, use
+             <b>nearest-customer-bridge</b> instead.
+
        <b>configure</b> <b>lldp</b> <b>portidsubtype</b> <b>ifname</b> | <b>macaddress</b>
 
        <b>configure</b> [ports <u>ethX</u> [,&#8230;]] <b>lldp</b> <b>portidsubtype</b> <b>local</b> <u>value</u>
        [<b>description</b> <u>description</u>]
 
-             Force port <span class="caps">ID</span> subtype. By default, <b>lldpcli</b> will use the <span class="caps">MAC</span>
+             Force port <span class="caps">ID</span> subtype. By default, <b>lldpd</b> will use the <span class="caps">MAC</span>
              address as port identifier and the interface name as port
              description, unless the interface has an alias. In this case,
              the interface name will be used as port identifier and the
@@ -604,11 +620,11 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
        <u>tx-only</u> | <u>disabled</u>
 
              Configure the administrative status of the given port. By
-             default, all ports are configured to be in <u>rxAndTx</u> mode. This
+             default, all ports are configured to be in <u>rx-and-tx</u> mode. This
              means they can receive and transmit <span class="caps">LLDP</span> frames (as well as
-             other protocols if needed). In <u>rxOnly</u> mode, they won&#8217;t emit any
-             frames and in <u>txOnly</u> mode, they won&#8217;t receive any frames. In
-             <u>disabled</u> mode, no frame will be sent and any incoming frame
+             other protocols if needed). In <u>rx-only</u> mode, they won&#8217;t emit
+             any frames and in <u>tx-only</u> mode, they won&#8217;t receive any frames.
+             In <u>disabled</u> mode, no frame will be sent and any incoming frame
              will be discarded. This settings do not override the opera-
              tional mode of the main daemon. If it is configured in receive-
              only mode (with the <b>-r</b> flag), setting any transmit mode won&#8217;t
