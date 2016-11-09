@@ -178,6 +178,9 @@ useful in this&nbsp;case.</p>
 <p>You can finish the installation with <code>make install</code>. Then, you still
 have to complete the following steps by yourself. They are system&nbsp;specifics:</p>
 <ul>
+<li>Ensure the <code>liblldpctl</code> library is correctly registered with the
+   system. The output of <code>make install</code> should give the appropriate
+   steps. On Linux, this is <code>ldconfig -a</code>.</li>
 <li>Create a <code>_lldpd</code> user and a <code>_lldpd</code> group. This is needed for
    privilege seperation (increased&nbsp;security).</li>
 <li>Create the chroot (<code>/usr/local/var/run/lldpd</code> by default). It is just an
