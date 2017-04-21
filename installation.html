@@ -51,7 +51,8 @@ sources. Once installed, you may want to look
 <li><a href="#gnulinux"><span class="caps">GNU</span>/Linux</a><ul>
 <li><a href="#debian-and-ubuntu">Debian and&nbsp;Ubuntu</a></li>
 <li><a href="#gentoo">Gentoo</a></li>
-<li><a href="#fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span> <span class="caps">SUSE</span></a></li>
+<li><a href="#fedora-rhel-centos">Fedora, <span class="caps">RHEL</span>,&nbsp;CentOS</a></li>
+<li><a href="#suse"><span class="caps">SUSE</span></a></li>
 </ul>
 </li>
 <li><a href="#bsd"><span class="caps">BSD</span></a></li>
@@ -85,10 +86,18 @@ well as a working init&nbsp;script.</p>
 <h2 id="gentoo">Gentoo</h2>
 <p><code>lldpd</code> is available in portage. Just issue the command <code>emerge lldpd</code>
 to install it. You can also <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
-<h2 id="fedora-rhel-centos-suse">Fedora, <span class="caps">RHEL</span>, CentOS <span class="amp">&amp;</span> <span class="caps">SUSE</span></h2>
+<h2 id="fedora-rhel-centos">Fedora, <span class="caps">RHEL</span>,&nbsp;CentOS</h2>
+<p><code>lldpd</code> is available from <a href="https://fedoraproject.org/wiki/EPEL" title="EPEL"><span class="caps">EPEL</span></a>. First, you need to install the
+<code>epel-release</code> package, then just install with <code>yum install lldpd</code> or
+<code>dnf install lldpd</code>. Once installed, you can change the options
+provided to <code>lldpd</code> in <code>/etc/sysconfig/lldpd</code>.</p>
+<p>Alternatively, you can install the packages
+from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build Service</a>. Follow the instructions available on
+the&nbsp;website.</p>
+<p>It is also possible to <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
+<h2 id="suse"><span class="caps">SUSE</span></h2>
 <p>You can install the packages from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build Service</a>. Follow
-the instructions available on the website. Once installed, you can
-change the options provided to <code>lldpd</code> in <code>/etc/sysconfig/lldpd</code>.</p>
+the instructions available on the&nbsp;website.</p>
 <p>It is also possible to <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
 <h1 id="bsd"><span class="caps">BSD</span></h1>
 <p><code>lldpd</code> is currently available in the ports tree of most BSDs<sup id="fnref:ports"><a class="footnote-ref" href="#fn:ports" rel="footnote">1</a></sup>.
