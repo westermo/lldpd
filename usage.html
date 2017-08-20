@@ -17,8 +17,8 @@
        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="https://media.luffy.cx/files/lldpd/lldpd-0.9.7.tar.gz">
-  <div title="Download latest version of lldpd">0.9.7</div>
+<a class="badge latest-version" href="https://media.luffy.cx/files/lldpd/lldpd-0.9.8.tar.gz">
+  <div title="Download latest version of lldpd">0.9.8</div>
 </a>
 
   <nav>
@@ -53,7 +53,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.7):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.8):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -340,7 +340,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
      &lt;pyr@openbsd.org&gt;, and Vincent Bernat &lt;bernat@luffy.cx&gt;.</div></div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.7):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.8):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -368,8 +368,11 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              tion.
 
      <b>-f</b> <u>format</u>
-             Choose the output format. Currently <u>plain</u>, <u>xml</u>, <u>json</u> and
-             <u>keyvalue</u> formats are available. The default is <u>plain</u>.
+             Choose the output format. Currently <u>plain</u>, <u>xml</u>, <u>json</u>, <u>json0</u> and
+             <u>keyvalue</u> formats are available. The default is <u>plain</u>.  <u>json0</u> is
+             more verbose than <u>json</u> but the structure of the <span class="caps">JSON</span> object is
+             not affected by the number of interfaces or the number of
+             neighbors. It is therefore easier to parse.
 
      <b>-c</b> <u>file</u>
              Read the given configuration file. This option may be repeated
@@ -442,7 +445,9 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
        <b>configure</b> <b>system</b> <b>hostname</b> <u>name</u>
 
              Override system hostname with the provided value. By default,
-             the system name is found from the resolved value of <b>uname</b> <b>-n</b>.
+             the system name is the <span class="caps">FQDN</span> found from the resolved value of
+             <b>uname</b> <b>-n</b>.  As a special value, use &#8220;.&#8221; (dot) to use the short
+             hostname instead of a <span class="caps">FQDN</span>.
 
        <b>unconfigure</b> <b>system</b> <b>hostname</b>
 
