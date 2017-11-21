@@ -16,8 +16,8 @@
        data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"
        alt="GitHub badge" title="Fork me on GitHub">
 </a>
-<a class="badge latest-version" href="https://media.luffy.cx/files/lldpd/lldpd-0.9.8.tar.gz">
-  <div title="Download latest version of lldpd">0.9.8</div>
+<a class="badge latest-version" href="https://media.luffy.cx/files/lldpd/lldpd-0.9.9.tar.gz">
+  <div title="Download latest version of lldpd">0.9.9</div>
 </a>
 
   <nav>
@@ -52,7 +52,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
 </ul>
 </div>
 <h1 id="lldpd8">lldpd.8</h1>
-<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.8):</p>
+<p>Here is the manual page for <code>lldpd</code> (version&nbsp;0.9.9):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpd</b> &#8212; <span class="caps">LLDP</span> daemon
 
@@ -60,6 +60,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
      <b>lldpd</b> [<b>-dxcseiklrv</b>] [<b>-D</b> <u>debug</u>] [<b>-p</b> <u>pidfile</u>] [<b>-S</b> <u>description</u>]
            [<b>-P</b> <u>platform</u>] [<b>-X</b> <u>socket</u>] [<b>-m</b> <u>management</u>] [<b>-u</b> <u>file</u>]
            [<b>-I</b> <u>interfaces</u>] [<b>-C</b> <u>interfaces</u>] [<b>-M</b> <u>class</u>] [<b>-H</b> <u>hide</u>] [<b>-L</b> <u>lldpcli</u>]
+           [<b>-O</b> <u>configfile</u>]
 
 <b><span class="caps">DESCRIPTION</span></b>
      <b>lldpd</b> is a daemon able to receive and send <u><span class="caps">LLDP</span></u> frames. The Link Layer
@@ -244,6 +245,11 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              Provide an alternative path to <b>lldpcli</b> for configuration. If
              empty, does not use <b>lldpcli</b> for configuration.
 
+     <b>-O</b> <u>configfile</u>
+             Override default configuration locations processed by <b>lldpcli</b>
+             at start. If a directory is provided, each file contained in it
+             will be read if ending by <b>.conf.</b> Order is alphabetical.
+
      <b>-v</b>      Show <b>lldpd</b> version. When repeated, show more build information.
 
 <b><span class="caps">FILTERING</span></b> <b><span class="caps">NEIGHBORS</span></b>
@@ -339,7 +345,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
      &lt;pyr@openbsd.org&gt;, and Vincent Bernat &lt;bernat@luffy.cx&gt;.</div></div>
 
 <h1 id="lldpcli8">lldpcli.8</h1>
-<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.8):</p>
+<p>Here is the manual page for <code>lldpcli</code> and <code>lldpctl</code> (version&nbsp;0.9.9):</p>
 <div class='manpage'><div><b><span class="caps">NAME</span></b>
      <b>lldpcli</b>, <b>lldpctl</b> &#8212; control <span class="caps">LLDP</span> daemon
 
@@ -402,13 +408,24 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
        <b>show</b> <b>neighbors</b> [ports <u>ethX</u> [,&#8230;]] [<b>details</b> | <b>summary</b>] [<b>hidden</b>]
 
              Display information about each neighbor known by lldpd(8) dae-
-             mon. With <b>summary</b>, only a the name and the port description of
+             mon. With <b>summary</b>, only the name and the port description of
              each remote host will be displayed. On the other hand, with
              <b>details</b>, all available information will be displayed, giving a
              verbose view. When using <b>hidden</b>, also display remote ports hid-
              den by the smart filter. When specifying one or several ports,
              the information displayed is limited to the given list of
              ports.
+
+       <b>show</b> <b>interfaces</b> [ports <u>ethX</u> [,&#8230;]] [<b>details</b> | <b>summary</b>] [<b>hidden</b>]
+
+             Display information about each local interface known by
+             lldpd(8) daemon. With <b>summary</b>, only the name and the port
+             description of each local interface will be displayed. On the
+             other hand, with <b>details</b>, all available information will be
+             displayed, giving a verbose view. When using <b>hidden</b>, also dis-
+             play local ports hidden by the smart filter. When specifying
+             one or several ports, the information displayed is limited to
+             the given list of ports.
 
        <b>show</b> <b>chassis</b> [<b>details</b> | <b>summary</b>]
 
@@ -422,8 +439,8 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              happen. When specifying ports, the changes are only reported
              when happening on the given ports.  <b>hidden</b>, <b>summary</b> and <b>details</b>
              have the same meaning than previously described. If <b>limit</b> is
-             specificed, <b>lldpcli</b> will exit after receiving the specified
-             number of events.
+             specified, <b>lldpcli</b> will exit after receiving the specified num-
+             ber of events.
 
        <b>show</b> <b>configuration</b>
 
@@ -497,7 +514,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
        <b>unconfigure</b> <b>system</b> <b>interface</b> <b>pattern</b>
 
              Remove any previously configured interface pattern and use all
-             physical interafces. This option undoes the previous one.
+             physical interfaces. This option undoes the previous one.
 
        <b>configure</b> <b>system</b> <b>interface</b> <b>description</b>
 
@@ -627,7 +644,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              other protocols if needed). In <u>rx-only</u> mode, they won&#8217;t emit
              any frames and in <u>tx-only</u> mode, they won&#8217;t receive any frames.
              In <u>disabled</u> mode, no frame will be sent and any incoming frame
-             will be discarded. This settings do not override the opera-
+             will be discarded. This setting does not override the opera-
              tional mode of the main daemon. If it is configured in receive-
              only mode (with the <b>-r</b> flag), setting any transmit mode won&#8217;t
              have any effect.
@@ -852,7 +869,7 @@ the daemon. Both parts are documented in their manual&nbsp;pages:</p>
              <u>supported</u> means that <span class="caps">MDI</span> power is supported on the given port
              while <u>enabled</u> means that <span class="caps">MDI</span> power is enabled.  <u>paircontrol</u> is
              used to indicate if pair selection can be controlled. Valid
-             values forr <u>powerpairs</u> are:
+             values for <u>powerpairs</u> are:
                <b>signal</b>  The signal pairs only are in use.
                <b>spare</b>   The spare pairs only are in use.
 
