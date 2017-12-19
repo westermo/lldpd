@@ -55,7 +55,7 @@ sources. Once installed, you may want to look
 </ul>
 </li>
 <li><a href="#bsd"><span class="caps">BSD</span></a></li>
-<li><a href="#mac-os-x">Mac <span class="caps">OS</span>&nbsp;X</a></li>
+<li><a href="#macos">macOS</a></li>
 <li><a href="#install-from-source">Install from&nbsp;source</a></li>
 </ul>
 </div>
@@ -95,8 +95,22 @@ from <a href="http://software.opensuse.org/download.html?project=home:vbernat&am
 the&nbsp;website.</p>
 <p>It is also possible to <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
 <h2 id="suse"><span class="caps">SUSE</span></h2>
-<p>You can install the packages from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build Service</a>. Follow
-the instructions available on the&nbsp;website.</p>
+<p>On <span class="caps">SLES</span> 12, openSUSE Leap 42.3 or openSUSE Tumbleweed, <code>lldpd</code> is
+available directly with the following&nbsp;command:</p>
+<div class="codehilite"><pre><span></span><span class="gp">$</span> sudo zypper install lldpd
+<span class="go">The following 11 NEW packages are going to be installed:</span>
+<span class="go">  libbsd0 libdb-4_8 libevent-2_0-5 libgdbm4 liblldpctl4 libsensors4 libsnmp30 libwrap0 lldpd perl snmp-mibs</span>
+
+<span class="go">11 new packages to install.</span>
+<span class="go">Overall download size: 8.7 MiB. Already cached: 0 B. After the operation, additional 47.8 MiB will be used.</span>
+<span class="go">Continue? [y/n/...? shows all options] (y): y</span>
+<span class="go">[...]</span>
+<span class="go">(11/11) Installing: lldpd-0.9.9-2.1.x86_64 ...............[done]</span>
+</pre></div>
+
+
+<p>You can also install the packages from <a href="http://software.opensuse.org/download.html?project=home:vbernat&amp;package=lldpd" title="lldpd on OSC">openSUSE Build
+Service</a>. Follow the instructions available on the&nbsp;website.</p>
 <p>It is also possible to <a href="#install-from-source">build <em>lldpd</em> from source</a>.</p>
 <h1 id="bsd"><span class="caps">BSD</span></h1>
 <p><code>lldpd</code> is currently available in the ports tree of most BSDs<sup id="fnref:ports"><a class="footnote-ref" href="#fn:ports" rel="footnote">1</a></sup>.
@@ -113,11 +127,10 @@ in <code>/etc/group</code>. The user must not be able to login, have its home as
 <code>/var/run/lldpd</code>.</p>
 <p>If <code>lldpcli</code> is not able to provide completion, you can use the <code>help</code>
 command instead or install the <span class="caps">GNU</span> Readline library on your&nbsp;system.</p>
-<h1 id="mac-os-x">Mac <span class="caps">OS</span>&nbsp;X</h1>
+<h1 id="macos">macOS</h1>
 <p>The easiest way is to use the
-<a href="https://media.luffy.cx/files/lldpd/lldpd-0.9.9.pkg" title="lldpd 0.9.9 version for OSX">installer package for <span class="caps">OS</span> X</a>. You need at least Mac
-<span class="caps">OS</span> X 10.6.</p>
-<p>Alternatively, you can use <a href="http://brew.sh/" title="Homebrew: the missing package manager for OS X">Homebrew</a>. Check the website if you
+<a href="https://media.luffy.cx/files/lldpd/lldpd-0.9.9.pkg" title="lldpd 0.9.9 version for OSX">installer package for macOS</a>. You need at least&nbsp;macOS 10.6.</p>
+<p>Alternatively, you can use <a href="http://brew.sh/" title="Homebrew: the missing package manager for macOS">Homebrew</a>. Check the website if you
 don&#8217;t have it, it is easy to install. Once installed, type in a&nbsp;terminal:</p>
 <div class="codehilite"><pre><span></span><span class="gp">$</span> brew install https://raw.github.com/vincentbernat/lldpd/master/osx/lldpd.rb
 <span class="gp">#</span><span class="c1">####################################################################### 100.0%</span>
