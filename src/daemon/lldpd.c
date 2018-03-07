@@ -36,6 +36,7 @@
 #include <sys/time.h>
 #include <sys/ioctl.h>
 #include <arpa/inet.h>
+#include <netinet/ether.h>
 #include <netinet/if_ether.h>
 #include <pwd.h>
 #include <grp.h>
@@ -1129,6 +1130,33 @@ lldpd_routing_enabled(struct lldpd *cfg)
 }
 
 static void
+lldpd_set_chassisid(struct lldpd *cfg)
+{
+	struct ether_addr mac;
+	char *name = NULL;
+
+	ether_aton_r(cfg->g_config.c_chassis_id, &mac);
+
+	if (LOCAL_CHASSIS(cfg)->c_id &&
+	    !memcmp(LOCAL_CHASSIS(cfg)->c_id, mac.ether_addr_octet, ETHER_ADDR_LEN))
+		return;
+
+	name = malloc(ETHER_ADDR_LEN);
+	if (!name) {
+		log_warn("localchassis", "not enough memory for chassis ID");
+		return;
+	}
+
+	if (LOCAL_CHASSIS(cfg)->c_id)
+		free(LOCAL_CHASSIS(cfg)->c_id);
+
+	memcpy(name, mac.ether_addr_octet, ETHER_ADDR_LEN);
+	LOCAL_CHASSIS(cfg)->c_id = name;
+	LOCAL_CHASSIS(cfg)->c_id_len = ETHER_ADDR_LEN;;
+	LOCAL_CHASSIS(cfg)->c_id_subtype = LLDP_CHASSISID_SUBTYPE_LLADDR;
+}
+
+static void
 lldpd_update_localchassis(struct lldpd *cfg)
 {
 	struct utsname un;
@@ -1196,6 +1224,10 @@ lldpd_update_localchassis(struct lldpd *cfg)
 		LOCAL_CHASSIS(cfg)->c_cap_enabled = LLDP_CAP_STATION;
 	else if (LOCAL_CHASSIS(cfg)->c_cap_enabled != LLDP_CAP_STATION)
 		LOCAL_CHASSIS(cfg)->c_cap_enabled &= ~LLDP_CAP_STATION;
+
+	/* Set configured chassis ID */
+	if (cfg->g_config.c_chassis_id)
+		lldpd_set_chassisid(cfg);
 
 	/* Set chassis ID if needed. This is only done if chassis ID
 	   has not been set previously (with the MAC address of an
@@ -1812,6 +1844,7 @@ lldpd_main(int argc, char *argv[], char *envp[])
 	cfg->g_config.c_tx_hold = LLDPD_TX_HOLD;
 	cfg->g_config.c_ttl = cfg->g_config.c_tx_interval * cfg->g_config.c_tx_hold;
 	cfg->g_config.c_max_neighbors = LLDPD_MAX_NEIGHBORS;
+	cfg->g_config.c_chassis_id = NULL;
 #ifdef ENABLE_LLDPMED
 	cfg->g_config.c_enable_fast_start = enable_fast_start;
 	cfg->g_config.c_tx_fast_init = LLDPD_FAST_INIT;

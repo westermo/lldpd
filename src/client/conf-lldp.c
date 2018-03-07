@@ -142,6 +142,31 @@ cmd_agent_type(struct lldpctl_conn_t *conn, struct writer *w,
 }
 
 static int
+cmd_chassisid_mac(struct lldpctl_conn_t *conn, struct writer *w,
+		struct cmd_env *env, void *arg)
+{
+	log_debug("lldpctl", "Set chassis ID MAC address");
+
+	lldpctl_atom_t *config = lldpctl_get_configuration(conn);
+	if (config == NULL) {
+		log_warnx("lldpctl",
+			  "unable to get configuration from lldpd. %s",
+			  lldpctl_last_strerror(conn));
+		return 0;
+	}
+	if (lldpctl_atom_set_str(config,
+		lldpctl_k_config_chassis_id, cmdenv_get(env, "chassisid-mac")) == NULL) {
+		log_warnx("lldpctl", "unable to set chassis ID MAC address. %s",
+		    lldpctl_last_strerror(conn));
+		lldpctl_atom_dec_ref(config);
+		return 0;
+	}
+	log_info("lldpctl", "Chassis ID MAC address set to new value %s", cmdenv_get(env, "chassisid-mac"));
+	lldpctl_atom_dec_ref(config);
+	return 1;
+}
+
+static int
 cmd_portid_type_local(struct lldpctl_conn_t *conn, struct writer *w,
 		struct cmd_env *env, void *arg)
 {
@@ -534,6 +559,20 @@ register_commands_configure_lldp(struct cmd_node *configure,
 			NEWLINE, "Set port administrative status",
 			NULL, cmd_status, NULL);
 	}
+
+	struct cmd_node *chassisid = commands_new(configure_lldp,
+	    "chassis-id", "Set chassis ID",
+	    cmd_check_no_env, NULL, "ports");
+
+	commands_new(
+		commands_new(
+			commands_new(chassisid,
+			    "macaddress", "Set chassis ID MAC address",
+			    NULL, NULL, NULL),
+			NULL, "MAC Address",
+			NULL, cmd_store_env_value, "chassisid-mac"),
+		NEWLINE, "Set chassis ID MAC address",
+		NULL, cmd_chassisid_mac, NULL);
 
 	/* Configure the various agent type we can configure. */
 	struct cmd_node *configure_lldp_agent_type = commands_new(

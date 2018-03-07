@@ -97,6 +97,8 @@ _lldpctl_atom_get_str_config(lldpctl_atom_t *atom, lldpctl_key_t key)
 		res = c->config->c_platform; break;
 	case lldpctl_k_config_hostname:
 		res = c->config->c_hostname; break;
+	case lldpctl_k_config_chassis_id:
+		res = c->config->c_chassis_id; break;
 	case lldpctl_k_config_bond_slave_src_mac_type:
 		return map_lookup(bond_slave_src_mac_map.map,
 				c->config->c_bond_slave_src_mac_type);
@@ -171,6 +173,12 @@ _lldpctl_atom_set_str_config(lldpctl_atom_t *atom, lldpctl_key_t key,
 	case lldpctl_k_config_hostname:
 		if (!__lldpctl_atom_set_str_config(c,
 			&config.c_hostname, &c->config->c_hostname,
+			value))
+			return NULL;
+		break;
+	case lldpctl_k_config_chassis_id:
+		if (!__lldpctl_atom_set_str_config(c,
+			&config.c_chassis_id, &c->config->c_chassis_id,
 			value))
 			return NULL;
 		break;

@@ -144,6 +144,13 @@ client_handle_set_configuration(struct lldpd *cfg, enum hmsg_type *type,
 		cfg->g_config.c_description = xstrdup(config->c_description);
 		levent_update_now(cfg);
 	}
+	if (CHANGED_STR(c_chassis_id)) {
+		log_debug("rpc", "change chassis ID to %s",
+		    config->c_chassis_id?config->c_chassis_id:"(NULL)");
+		free(cfg->g_config.c_chassis_id);
+		cfg->g_config.c_chassis_id = xstrdup(config->c_chassis_id);
+		levent_update_now(cfg);
+	}
 	if (CHANGED_STR(c_platform)) {
 		log_debug("rpc", "change platform description to %s",
 		    config->c_platform?config->c_platform:"(NULL)");
