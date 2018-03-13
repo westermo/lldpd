@@ -1871,6 +1871,14 @@ agent_init(struct lldpd *cfg, const char *agentx)
 	if (agentx)
 		netsnmp_ds_set_string(NETSNMP_DS_APPLICATION_ID,
 				      NETSNMP_DS_AGENT_X_SOCKET, agentx);
+
+	/* Ping AgentX less often than every 15 seconds: We check every 2 minutes. */
+	netsnmp_ds_set_int(NETSNMP_DS_APPLICATION_ID,
+			   NETSNMP_DS_AGENT_AGENTX_PING_INTERVAL, 120);
+	/* Ping AgentX more often until connected */
+	netsnmp_ds_set_int(NETSNMP_DS_APPLICATION_ID,
+			   NETSNMP_DS_AGENT_AGENTX_PING_POSTPONE_TIME, 5);
+
 	init_agent("lldpAgent");
 	REGISTER_MIB("lldp", agent_lldp_vars, variable8, lldp_oid);
 	init_snmp("lldpAgent");
