@@ -427,7 +427,7 @@ input_append(const char *arg, struct inputs *inputs, int acceptdir, int warn)
 int
 main(int argc, char *argv[])
 {
-	int ch, debug = 0, use_syslog = 0, rc = EXIT_FAILURE;
+	int ch, debug = 0, use_syslog = 1, rc = EXIT_FAILURE;
 	const char *fmt = "plain";
 	lldpctl_conn_t *conn = NULL;
 	const char *options = is_lldpctl(argv[0])?"hdvf:u:":"hdsvf:c:C:u:";

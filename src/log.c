@@ -155,22 +155,21 @@ vlog(int pri, const char *token, const char *fmt, va_list ap)
 		va_copy(ap2, ap);
 		vsyslog(pri, fmt, ap2);
 		va_end(ap2);
-	}
-
-	/* Log to standard error in all cases */
-	char *nfmt;
-	/* best effort in out of mem situations */
-	if (asprintf(&nfmt, "%s %s%s%s]%s %s\n",
-		date(),
-		translate(STDERR_FILENO, pri),
-		token ? "/" : "", token ? token : "",
-		isatty(STDERR_FILENO) ? "\033[0m" : "",
-		fmt) == -1) {
-		vfprintf(stderr, fmt, ap);
-		fprintf(stderr, "\n");
 	} else {
-		vfprintf(stderr, nfmt, ap);
-		free(nfmt);
+		char *nfmt;
+		/* best effort in out of mem situations */
+		if (asprintf(&nfmt, "%s %s%s%s]%s %s\n",
+			date(),
+			translate(STDERR_FILENO, pri),
+			token ? "/" : "", token ? token : "",
+			isatty(STDERR_FILENO) ? "\033[0m" : "",
+			fmt) == -1) {
+			vfprintf(stderr, fmt, ap);
+			fprintf(stderr, "\n");
+		} else {
+			vfprintf(stderr, nfmt, ap);
+			free(nfmt);
+		}
 	}
 	fflush(stderr);
 }
