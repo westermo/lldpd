@@ -1856,6 +1856,8 @@ agent_init(struct lldpd *cfg, const char *agentx)
 	/* We are chrooted, we don't want to handle persistent states */
 	netsnmp_ds_set_boolean(NETSNMP_DS_LIBRARY_ID,
 	    NETSNMP_DS_LIB_DONT_PERSIST_STATE, TRUE);
+	netsnmp_ds_set_boolean(NETSNMP_DS_APPLICATION_ID,
+	    NETSNMP_DS_AGENT_NO_CONNECTION_WARNINGS, TRUE);
 	/* Do not load any MIB */
 	setenv("MIBS", "", 1);
 	setenv("MIBDIRS", "/dev/null", 1);
