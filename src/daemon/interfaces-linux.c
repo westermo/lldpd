@@ -989,15 +989,13 @@ iflinux_add_physical(struct lldpd *cfg,
 			if (skip) continue;
 		}
 
-		/* If the interface is linked to another one, skip it too. */
-		if (iface->lower && (!iface->driver || strcmp(iface->driver, "veth"))) {
-			log_debug("interfaces", "skip %s: there is a lower interface (%s)",
-			    iface->name, iface->lower->name);
-			continue;
+		/* We do not want to use chanX, which is the lower interface for all ports */
+		if (iface->lower) {
+		    if (!strncmp(iface->lower->name, "chan", 4))
+			log_debug("interfaces", "skip %s as lower interface for %s",
+				  iface->lower->name, iface->name);
+		    iface->lower= NULL;
 		}
-
-		/* Get the real MAC address (for example, if the interface is enslaved) */
-		iflinux_get_permanent_mac(cfg, interfaces, iface);
 
 		log_debug("interfaces",
 		    "%s is a physical interface",
